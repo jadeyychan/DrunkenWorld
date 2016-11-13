@@ -4,6 +4,10 @@ var width = 1249,
 
 var color = d3.scale.category10();
 
+var quantize = d3.scale.quantile()
+    .domain([0, 4])
+    .range(d3.range(9).map(function(i) { return "country-" + i; }));
+
 var projection = d3.geo.equirectangular()
     .scale(160)
     .translate([width / 2, height / 2]);
@@ -42,19 +46,27 @@ d3.json("data/map/world-110m.json", function(error, world) {
     svg.selectAll(".country")
         .data(countries)
         .enter().insert("path", ".graticule")
-        .attr("class", "country")
+        .attr("class", function(d) {
+            var country = country_ids[String(d.id)];
+            if (consumption[country] && consumption[country]["Wine"]["2010"]) {
+                return quantize(consumption[country]["Wine"]["2010"]);
+            } else {
+                return "country-NA";
+            }
+        })
         .attr("d", path)
-        .style("fill", function(d, i) { 
-            return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })
+        // .style("fill", function(d, i) { 
+        //     return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })
         .on("mouseover", function(d) {  
-            var country = country_ids[String(d.id)]; 
+            var country     = country_ids[String(d.id)];
+            var co =  
             console.log(d.id, country);
 
             tooltip.transition()        
                 .duration(200)      
                 .style("opacity", .9);
             if (consumption[country]) {    
-                tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["2014"] + " liters in 2014")  
+                tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["2010"] + " liters in 2010")  
                     .style("left", (d3.event.pageX) + "px")     
                     .style("top", (d3.event.pageY - 28) + "px");
             } else {

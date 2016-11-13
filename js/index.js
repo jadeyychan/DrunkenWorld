@@ -21,7 +21,7 @@ $.ajax({
             // build object with annual data for each alc type
             var years = { };
             for (var j = 0; j < line.length - 3; j++) {
-                years[2015 - j] = (line[j + 3] != "" ? line[j + 3] : "N/A");
+                years[2015 - j] = (line[j + 3] != "" ? line[j + 3] : null);
             }
             consumption[country][alc_type] = years;
             consumption[country]["id"] = id;

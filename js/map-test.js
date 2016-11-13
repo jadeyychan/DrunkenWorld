@@ -17,7 +17,7 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-var svg = d3.select("body").append("svg")
+svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -52,8 +52,8 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .attr("d", path)
         .style("fill", function(d) {
             var country = country_ids[String(d.id)];
-            if (consumption[country] && consumption[country]["Wine"]["2010"]) {
-                return colorScale(consumption[country]["Wine"]["2010"]);
+            if (consumption[country] && consumption[country]["Wine"]["1990"]) {
+                return colorScale(consumption[country]["Wine"]["1990"]);
             } else {
                 return "grey";
             }
@@ -67,7 +67,7 @@ d3.json("data/map/world-110m.json", function(error, world) {
                 .duration(200)      
                 .style("opacity", .9);
             if (consumption[country]) {    
-                tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["2010"] + " liters in 2010")  
+                tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["1990"] + " liters in 1990")  
                     .style("left", (d3.event.pageX) + "px")     
                     .style("top", (d3.event.pageY - 28) + "px");
             } else {

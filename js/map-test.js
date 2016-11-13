@@ -1,5 +1,5 @@
-var width = 1249,
-    height = 600,
+var width  = $(window).width() * 0.8,
+    height = $(window).height() * 0.8,
     scale0 = (width - 1) / 2 / Math.PI;
 
 var color = d3.scale.category10();

@@ -2,11 +2,6 @@ body {
 	background-color: cornflowerblue;
 }
 
-p {
-	color: white;
-	font-family: Helvetica;
-}
-
 /* Map */
 .fill {
     fill: #fff;
@@ -57,6 +52,7 @@ div.tooltip {
   z-index: 2;
   height: 100%;
   background: none;
+  width: 80%;
 }
 
 .d3slider-rect-range {

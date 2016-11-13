@@ -1,5 +1,6 @@
 var width = 1249,
-    height = 600;
+    height = 600,
+    scale0 = (width - 1) / 2 / Math.PI;
 
 var color = d3.scale.category10();
 
@@ -46,13 +47,21 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .style("fill", function(d, i) { 
             return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })
         .on("mouseover", function(d) {  
-            var country = country_ids[String(d.id)];    
+            var country = country_ids[String(d.id)]; 
+            console.log(d.id, country);
+
             tooltip.transition()        
                 .duration(200)      
-                .style("opacity", .9);      
-            tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["2014"] + " liters in 2014")  
-                .style("left", (d3.event.pageX) + "px")     
-                .style("top", (d3.event.pageY - 28) + "px");    
+                .style("opacity", .9);
+            if (consumption[country]) {    
+                tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["2014"] + " liters in 2014")  
+                    .style("left", (d3.event.pageX) + "px")     
+                    .style("top", (d3.event.pageY - 28) + "px");
+            } else {
+                tooltip.html(country + "<br />Wine: N/A")  
+                    .style("left", (d3.event.pageX) + "px")     
+                    .style("top", (d3.event.pageY - 28) + "px");
+            }
             })                 
         .on("mouseout", function(d) {       
             tooltip.transition()        
@@ -67,3 +76,23 @@ d3.json("data/map/world-110m.json", function(error, world) {
 });
 
 d3.select(self.frameElement).style("height", height + "px");
+
+// zoom code
+var zoom = d3.behavior.zoom()
+    .translate([width / 2, height / 2])
+    .scale(scale0)
+    .scaleExtent([scale0, 8 * scale0])
+    .on("zoom", zoomed);
+
+svg
+    .call(zoom)
+    .call(zoom.event);
+
+function zoomed() {
+  projection
+      .translate(zoom.translate())
+      .scale(zoom.scale());
+
+  svg.selectAll("path")
+      .attr("d", path);
+}

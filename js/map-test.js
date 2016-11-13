@@ -2,7 +2,9 @@ var width  = $(window).width() * 0.8,
     height = $(window).height() * 0.8,
     scale0 = (width - 1) / 2 / Math.PI;
 
-var color = d3.scale.category10();
+var colorScale = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#920099"]);
 
 var quantize = d3.scale.quantile()
     .domain([0, 4])
@@ -46,17 +48,16 @@ d3.json("data/map/world-110m.json", function(error, world) {
     svg.selectAll(".country")
         .data(countries)
         .enter().insert("path", ".graticule")
-        .attr("class", function(d) {
+        .attr("class", "country")
+        .attr("d", path)
+        .style("fill", function(d) {
             var country = country_ids[String(d.id)];
             if (consumption[country] && consumption[country]["Wine"]["2010"]) {
-                return quantize(consumption[country]["Wine"]["2010"]);
+                return colorScale(consumption[country]["Wine"]["2010"]);
             } else {
-                return "country-NA";
+                return "grey";
             }
         })
-        .attr("d", path)
-        // .style("fill", function(d, i) { 
-        //     return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })
         .on("mouseover", function(d) {  
             var country     = country_ids[String(d.id)];
             var co =  

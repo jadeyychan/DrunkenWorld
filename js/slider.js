@@ -6,6 +6,7 @@ var slider = d3.slider()
 				.stepValues(d3.range(1960, 2016, 1))
 				.showRange(true)
 				.value(1990)
+                .tickFormat(d3.format("d"))
                 .callback(function(event) {
                     year = String(self.slider.value());
                     svg.selectAll(".country")

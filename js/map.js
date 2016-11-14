@@ -52,26 +52,23 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .attr("d", path)
         .style("fill", function(d) {
             var country = country_ids[String(d.id)];
-            if (consumption[country] && consumption[country]["Wine"]["1990"]) {
-                return colorScale(consumption[country]["Wine"]["1990"]);
+            if (consumption[country] && consumption[country]["All types"]["1990"]) {
+                return colorScale(consumption[country]["All types"]["1990"]);
             } else {
                 return "grey";
             }
         })
         .on("mouseover", function(d) {  
             var country     = country_ids[String(d.id)];
-            var co =  
-            console.log(d.id, country);
-
             tooltip.transition()        
                 .duration(200)      
                 .style("opacity", .9);
             if (consumption[country]) {    
-                tooltip.html(country + "<br />Wine: " + consumption[country]["Wine"]["1990"] + " liters in 1990")  
+                tooltip.html(country + "<br />Alcohol: " + consumption[country]["All types"]["1990"] + " liters in 1990")  
                     .style("left", (d3.event.pageX) + "px")     
                     .style("top", (d3.event.pageY - 28) + "px");
             } else {
-                tooltip.html(country + "<br />Wine: N/A")  
+                tooltip.html(country + "<br />Alcohol: N/A")  
                     .style("left", (d3.event.pageX) + "px")     
                     .style("top", (d3.event.pageY - 28) + "px");
             }

@@ -1,9 +1,9 @@
 // Initialize slider
 var slider = d3.slider()
-				.min(1960)
-				.max(2015)
-				.tickValues(d3.range(1960, 2016, 10))
-				.stepValues(d3.range(1960, 2016, 1))
+				.min(1961)
+				.max(2011)
+				.tickValues(d3.range(1960, 2014, 10))
+				.stepValues(d3.range(1960, 2014, 1))
 				.showRange(true)
 				.value(1990)
                 .tickFormat(d3.format("d"))
@@ -12,8 +12,8 @@ var slider = d3.slider()
                     svg.selectAll(".country")
                        .style("fill", function(d) {
                             var country = country_ids[String(d.id)];
-                            if (consumption[country] && consumption[country]["Wine"][year]) {
-                                return colorScale(consumption[country]["Wine"][year]);
+                            if (consumption[country] && consumption[country]["All types"][year]) {
+                                return colorScale(consumption[country]["All types"][year]);
                             } else {
                                 return "grey";
                             }

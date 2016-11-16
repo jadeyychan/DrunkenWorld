@@ -5,19 +5,14 @@ var slider = d3.slider()
 				.tickValues(d3.range(1960, 2014, 10))
 				.stepValues(d3.range(1960, 2014, 1))
 				.showRange(true)
-				.value(1990)
+				.value(init_year)
                 .tickFormat(d3.format("d"))
                 .callback(function(event) {
                     year = String(self.slider.value());
                     svg.selectAll(".country")
-                       .style("fill", function(d) {
-                            var country = country_ids[String(d.id)];
-                            if (consumption[country] && consumption[country]["All types"][year]) {
-                                return colorScale(consumption[country]["All types"][year]);
-                            } else {
-                                return "grey";
-                            }
-                    });
+                        .style("fill", function(d) { return set_country_color(d, year); })
+                        .on("mouseover", function(d) { set_tooltip(d, year); })                 
+                        .on("mouseout", function(d)  { disable_tooltip(); });
                 });
 
 

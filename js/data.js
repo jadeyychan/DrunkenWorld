@@ -4,7 +4,7 @@ max_year = 2014;
 consumption = { };
 country_ids = { };
 
-function aggregate_annual_data(line) {
+function aggregate_annual_data(line, loud) {
     var years = { };
     var searchForNull = false;
 
@@ -65,7 +65,7 @@ $.ajax({
             if (!consumption[country]) consumption[country] = { };
             
             // aggregate annual data for each alc type
-            consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length));
+            consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), true);
         }
         console.log("consumption data loaded...");
     }

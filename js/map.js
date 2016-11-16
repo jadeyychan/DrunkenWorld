@@ -1,3 +1,49 @@
+/********************/
+/* helper functions */
+/********************/
+function get_consumption(country, alc_types, year) {
+    var consumption_sum = 0;
+    for (var i = 0; i < alc_types.length; i++) {
+        consumption_type = consumption[country][alc_types[i]][String(year)];
+        consumption_sum += parseFloat(consumption_type != null ? consumption_type : 0);
+    }
+    return consumption_sum;
+}
+
+function set_country_color(d, year) {
+    var country   = country_ids[String(d.id)];
+    if (consumption[country] && get_consumption(country, alc_types, year)) {
+        return colorScale(get_consumption(country, alc_types, year));
+    } else {
+        return "grey";
+    }
+}
+
+function set_tooltip(d, year) {
+    var country = country_ids[String(d.id)];
+    tooltip.transition()        
+        .duration(200)      
+        .style("opacity", .9);
+    if (consumption[country]) {    
+        tooltip.html(country + "<br />Alcohol: " + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");
+    } else {
+        tooltip.html(country + "<br />Alcohol: N/A")  
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");
+    }
+}
+
+function disable_tooltip() {
+    tooltip.transition()        
+        .duration(500)      
+        .style("opacity", 0); 
+}
+
+/************************/
+/* initialize variables */
+/************************/
 var width  = $(window).width() * 0.8,
     height = $(window).height() * 0.8,
     scale0 = (width - 1) / 2 / Math.PI;
@@ -17,6 +63,13 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
+alc_types = ["Wine", "Beer"];
+
+init_year = 1992;
+
+/*****************/
+/* build the map */
+/*****************/
 svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -50,34 +103,9 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .enter().insert("path", ".graticule")
         .attr("class", "country")
         .attr("d", path)
-        .style("fill", function(d) {
-            var country = country_ids[String(d.id)];
-            if (consumption[country] && consumption[country]["All types"]["1990"]) {
-                return colorScale(consumption[country]["All types"]["1990"]);
-            } else {
-                return "grey";
-            }
-        })
-        .on("mouseover", function(d) {  
-            var country     = country_ids[String(d.id)];
-            tooltip.transition()        
-                .duration(200)      
-                .style("opacity", .9);
-            if (consumption[country]) {    
-                tooltip.html(country + "<br />Alcohol: " + consumption[country]["All types"]["1990"] + " liters in 1990")  
-                    .style("left", (d3.event.pageX) + "px")     
-                    .style("top", (d3.event.pageY - 28) + "px");
-            } else {
-                tooltip.html(country + "<br />Alcohol: N/A")  
-                    .style("left", (d3.event.pageX) + "px")     
-                    .style("top", (d3.event.pageY - 28) + "px");
-            }
-            })                 
-        .on("mouseout", function(d) {       
-            tooltip.transition()        
-                .duration(500)      
-                .style("opacity", 0);   
-        });
+        .style("fill", function(d) { return set_country_color(d, init_year); })
+        .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
+        .on("mouseout", function(d)  { disable_tooltip(); });
 
     svg.insert("path", ".graticule")
         .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))

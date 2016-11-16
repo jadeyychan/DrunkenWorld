@@ -1,9 +1,12 @@
+var min_year = 1961;
+var max_year = 2014;
+
 // Initialize slider
 var slider = d3.slider()
-				.min(1961)
-				.max(2011)
-				.tickValues(d3.range(1960, 2014, 10))
-				.stepValues(d3.range(1960, 2014, 1))
+				.min(min_year)
+				.max(max_year)
+				.tickValues(d3.range(min_year, max_year, 10))
+				.stepValues(d3.range(min_year, max_year, 1))
 				.showRange(true)
 				.value(init_year)
                 .tickFormat(d3.format("d"))
@@ -17,3 +20,18 @@ var slider = d3.slider()
 
 // Render the slider in the div
 d3.select('.slider').call(slider);
+
+// Animate button
+$('.slider-button').click(
+    function() {
+        time_travel(min_year);
+    });
+
+function time_travel(pos) {
+    setTimeout(function() {
+        slider.setValue(pos);
+        if (pos < max_year) {
+            time_travel(++pos);
+       }
+   }, 80);
+}

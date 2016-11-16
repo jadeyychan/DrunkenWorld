@@ -1,6 +1,5 @@
-var min_year = 1960;
-var max_year = 2016;
-var default_year = 1990;
+var min_year = 1961;
+var max_year = 2014;
 
 // Initialize slider
 var slider = d3.slider()
@@ -9,24 +8,18 @@ var slider = d3.slider()
 				.tickValues(d3.range(min_year, max_year, 10))
 				.stepValues(d3.range(min_year, max_year, 1))
 				.showRange(true)
-				.value(default_year)
+				.value(init_year)
                 .tickFormat(d3.format("d"))
                 .callback(function(event) {
                     year = String(self.slider.value());
                     svg.selectAll(".country")
-                       .style("fill", function(d) {
-                            var country = country_ids[String(d.id)];
-                            if (consumption[country] && consumption[country]["Wine"][year]) {
-                                return colorScale(consumption[country]["Wine"][year]);
-                            } else {
-                                return "grey";
-                            }
-                    });
+                        .style("fill", function(d) { return set_country_color(d, year); })
+                        .on("mouseover", function(d) { set_tooltip(d, year); })                 
+                        .on("mouseout", function(d)  { disable_tooltip(); });
                 });
 
 // Render the slider in the div
 d3.select('.slider').call(slider);
-
 
 // Animate button
 $('.slider-button').click(

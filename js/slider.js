@@ -15,6 +15,5 @@ var slider = d3.slider()
                         .on("mouseout", function(d)  { disable_tooltip(); });
                 });
 
-
 // Render the slider in the div
 d3.select('.slider').call(slider);

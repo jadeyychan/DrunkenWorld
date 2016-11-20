@@ -103,9 +103,10 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .enter().insert("path", ".graticule")
         .attr("class", "country")
         .attr("d", path)
-        .style("fill", function(d) { return set_country_color(d, init_year); })
+        .style("fill", function(d)   { return set_country_color(d, init_year); })
         .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
-        .on("mouseout", function(d)  { disable_tooltip(); });
+        .on("mouseout", function(d)  { disable_tooltip(); })
+        .on("click", function(d)     { sidebar(d, init_year); });
 
     svg.insert("path", ".graticule")
         .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))

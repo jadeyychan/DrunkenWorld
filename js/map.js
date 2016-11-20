@@ -63,7 +63,24 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-alc_types = ["Wine"];
+alc_types = ["Wine", "Beer", "Spirits"];
+
+$('.check').on("change", function() {
+    var check = $(this).attr('checked', this.checked);
+    if (check[0].checked) {
+        alc_types.push(this.value);
+    }
+    else {
+        var index = alc_types.indexOf(this.value);
+        alc_types.splice(index, 1);
+    }
+    console.log(alc_types);
+    year = String(self.slider.value());
+    svg.selectAll(".country")
+            .style("fill", function(d) { return set_country_color(d, year); })
+            .on("mouseover", function(d) { set_tooltip(d, year); })                 
+            .on("mouseout", function(d)  { disable_tooltip(); });
+});
 
 init_year = 1990;
 
@@ -103,9 +120,10 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .enter().insert("path", ".graticule")
         .attr("class", "country")
         .attr("d", path)
-        .style("fill", function(d) { return set_country_color(d, init_year); })
+        .style("fill", function(d)   { return set_country_color(d, init_year); })
         .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
-        .on("mouseout", function(d)  { disable_tooltip(); });
+        .on("mouseout", function(d)  { disable_tooltip(); })
+        .on("click", function(d)     { sidebar(d, init_year); });
 
     svg.insert("path", ".graticule")
         .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
@@ -144,5 +162,5 @@ function zoomed() {
         .scale(s);
 
     svg.selectAll("path")
-       .attr("d", path);
+        .attr("d", path);
 }

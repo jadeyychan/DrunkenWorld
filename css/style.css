@@ -2,15 +2,6 @@ body {
   font-family: "Georgia", serif;
 }
 
-.filter {
-  position: absolute;
-  top: 10px;
-  bottom: 0;
-  left: 0;
-  width: 80px;
-  background: lightgray;
-}
-
 .main {
   position: relative;
   left: 100px;
@@ -144,6 +135,16 @@ div.tooltip {
   fill: none;
   pointer-events: all;
   z-index: 1;
+}
+
+/* Filter*/
+.filter {
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  background: lightgray;
 }
 
 /* Sidebar */

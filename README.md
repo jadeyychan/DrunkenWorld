@@ -6,3 +6,4 @@ THINGS TO DO:
 - [ ] Add filters (with icons)
 - [ ] Play button with icon
 - [ ] Side bar 
+- [ ] Zooming + panning is weird

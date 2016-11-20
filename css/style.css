@@ -2,7 +2,7 @@ body {
   font-family: "Georgia", serif;
 }
 
-.sidebar {
+.filter {
   position: absolute;
   top: 10px;
   bottom: 0;
@@ -154,4 +154,19 @@ div.tooltip {
   fill: none;
   pointer-events: all;
   z-index: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 18%;
+  border: solid 1px gray;
+}
+
+.sidebar_item {
+  background-color: gray;
+  margin: 2px 0px 2px 0px;
 }

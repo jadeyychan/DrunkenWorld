@@ -63,23 +63,26 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-var alc_types = [];
+var alc_types = ["Wine", "Beer", "Spirits"];
 
 $('.check').on("change", function() {
     var check = $(this).attr('checked', this.checked);
     if (check[0].checked) {
         alc_types.push(this.value);
-        console.log(alc_types);
     }
     else {
         var index = alc_types.indexOf(this.value);
         alc_types.splice(index, 1);
-        console.log(alc_types);
     }
+    console.log(alc_types);
+    year = String(self.slider.value());
+    svg.selectAll(".country")
+            .style("fill", function(d) { return set_country_color(d, year); })
+            .on("mouseover", function(d) { set_tooltip(d, year); })                 
+            .on("mouseout", function(d)  { disable_tooltip(); });
 })
 
-console.log(alc_types);
-alc_types = ["Wine"];
+
 init_year = 1990;
 
 /*****************/

@@ -80,7 +80,7 @@ $('.check').on("change", function() {
 
 console.log(alc_types);
 alc_types = ["Wine"];
-init_year = 1992;
+init_year = 1990;
 
 /*****************/
 /* build the map */

@@ -262,6 +262,14 @@ d3.slider = function module() {
     focus.attr("transform", "translate(" + scale(val) + ",0)");
     focus.selectAll("text").text(val);
   }
+
+  slider.slide_to = function(newValue) {
+    if(newValue > max)
+      newValue = max;
+    else if(newValue < min)
+      newValue = min;
+    div.on("click")(newValue);
+  }   
   
   slider.getNearest = function(val, arr) {
     var l = arr.reduce(function(p, c, i, a){

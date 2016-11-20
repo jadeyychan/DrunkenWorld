@@ -11,6 +11,16 @@ body {
   background: lightgray;
 }
 
+.check {
+  display: none;
+}
+
+.icon {
+  background: steelblue;
+  height: 30px;
+  width: 30px;
+}
+
 .main {
   position: relative;
   left: 100px;

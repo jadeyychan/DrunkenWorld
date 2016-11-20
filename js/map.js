@@ -68,6 +68,7 @@ var alc_types = ["Wine", "Beer", "Spirits"];
 $('.check').on("change", function() {
     var check = $(this).attr('checked', this.checked);
     if (check[0].checked) {
+        
         alc_types.push(this.value);
     }
     else {

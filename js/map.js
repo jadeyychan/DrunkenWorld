@@ -63,7 +63,7 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-var alc_types = ["Wine", "Beer", "Spirits"];
+alc_types = ["Wine", "Beer", "Spirits"];
 
 $('.check').on("change", function() {
     var check = $(this).attr('checked', this.checked);
@@ -81,8 +81,7 @@ $('.check').on("change", function() {
             .style("fill", function(d) { return set_country_color(d, year); })
             .on("mouseover", function(d) { set_tooltip(d, year); })                 
             .on("mouseout", function(d)  { disable_tooltip(); });
-})
-
+});
 
 init_year = 1990;
 
@@ -146,11 +145,23 @@ svg
     .call(zoom)
     .call(zoom.event);
 
-function zoomed() {
-  projection
-      .translate(zoom.translate())
-      .scale(zoom.scale());
+console.log(zoom.event);
 
-  svg.selectAll("path")
-      .attr("d", path);
+function zoomed() {
+    var t = d3.event.translate,
+        s = d3.event.scale;
+
+    console.log(t);
+
+    t[0] = Math.min(width / 2 * (s - 1), Math.max(width / 2 * (1 - s), t[0]));
+    t[1] = Math.min(height / 2 * (s - 1) + 230 * s, Math.max(height / 2 * (1 - s) - 230 * s, t[1]));
+
+    console.log(t);
+
+    projection
+        .translate(t)
+        .scale(s);
+
+    svg.selectAll("path")
+        .attr("d", path);
 }

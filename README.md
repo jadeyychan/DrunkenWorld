@@ -1,10 +1,17 @@
 # maybs_wine
 
-THINGS TO DO:
-- [ ] Remove countries with next to no data
-- [ ] Add filters (with icons)
-- [ ] Play button with icon
-- [ ] Reasoning for grey coloring?
+FUNCTIONAL THINGS TO DO:
+- [x] Add sidebar
+- [x] Add slider
+- [x] Add filters
+- [ ] Figure out reasoning for grey coloring (???)
 - [ ] Panning and zooming containment
-- [ ] Side bar 
-- [ ] Zooming + panning is weird
+- [ ] Add "About" section
+
+STYLE THINGS TO DO:
+- [ ] Filter icons
+- [ ] Play button icon
+- [ ] Style sidebar
+- [ ] Move slider to bottom of screen
+- [ ] Stylize color coordination
+- [ ] Overall clean up

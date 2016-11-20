@@ -63,8 +63,23 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-alc_types = ["Wine", "Beer"];
+var alc_types = [];
 
+$('.check').on("change", function() {
+    var check = $(this).attr('checked', this.checked);
+    if (check[0].checked) {
+        alc_types.push(this.value);
+        console.log(alc_types);
+    }
+    else {
+        var index = alc_types.indexOf(this.value);
+        alc_types.splice(index, 1);
+        console.log(alc_types);
+    }
+})
+
+console.log(alc_types);
+alc_types = ["Wine"];
 init_year = 1992;
 
 /*****************/

@@ -63,7 +63,7 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-alc_types = ["Wine", "Beer"];
+alc_types = ["Wine"];
 
 init_year = 1990;
 
@@ -126,11 +126,23 @@ svg
     .call(zoom)
     .call(zoom.event);
 
-function zoomed() {
-  projection
-      .translate(zoom.translate())
-      .scale(zoom.scale());
+console.log(zoom.event);
 
-  svg.selectAll("path")
-      .attr("d", path);
+function zoomed() {
+    var t = d3.event.translate,
+        s = d3.event.scale;
+
+    console.log(t);
+
+    t[0] = Math.min(width / 2 * (s - 1), Math.max(width / 2 * (1 - s), t[0]));
+    t[1] = Math.min(height / 2 * (s - 1) + 230 * s, Math.max(height / 2 * (1 - s) - 230 * s, t[1]));
+
+    console.log(t);
+
+    projection
+        .translate(t)
+        .scale(s);
+
+    svg.selectAll("path")
+       .attr("d", path);
 }

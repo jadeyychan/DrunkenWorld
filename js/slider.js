@@ -1,5 +1,5 @@
 var min_year = 1960;
-var max_year = 2014;
+var max_year = 2012;
 
 // Initialize slider
 var slider = d3.slider()
@@ -14,7 +14,7 @@ var slider = d3.slider()
         year = String(self.slider.value());
         svg.selectAll(".country")
             .style("fill", function(d) { return set_country_color(d, year); })
-            .on("mouseover", function(d) { set_tooltip(d, year); })                 
+            .on("mouseover", function(d) { set_tooltip(d, year); })                
             .on("mouseout", function(d)  { disable_tooltip(); });
     });
 

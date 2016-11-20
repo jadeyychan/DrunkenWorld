@@ -1,4 +1,4 @@
-max_year = 2014;
+data_max_year = 2015;
 
 // object that will contain annual alcohol data for each country
 consumption = { };
@@ -11,29 +11,29 @@ function aggregate_annual_data(line, loud) {
     for (var j = 0; j < line.length; j++) {
         // if data found, add to object and turn on searching
         if (line[j] != "") {
-            years[max_year - j] = line[j];
+            years[data_max_year - j] = line[j];
             searchForNull       = true;
 
         // data is blank but not searching
         } else if (searchForNull == false) {
-            years[max_year - j] = null;
+            years[data_max_year - j] = null;
 
         // data is blank and searching
         } else {
             // mark where data was last found
-            var start_y = max_year - (j - 1);
+            var start_y = data_max_year - (j - 1);
             var start_v = line[j - 1];
 
             // loop until we find data again
             while (line[j] == "") {
-                years[max_year - j] = null;
+                years[data_max_year - j] = null;
                 j++;
             }
 
-            years[max_year - j] = null;
+            years[data_max_year - j] = null;
 
             if (j < line.length) {
-                var end_y = max_year - (j + 1);
+                var end_y = data_max_year - (j + 1);
                 var end_v = line[j + 1];
                 var inc_v = (end_v - start_v) / (end_y - start_y);
 

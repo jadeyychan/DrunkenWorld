@@ -65,7 +65,7 @@ var path = d3.geo.path()
 
 alc_types = ["Wine", "Beer"];
 
-init_year = 1992;
+init_year = 1990;
 
 /*****************/
 /* build the map */

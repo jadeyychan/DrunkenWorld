@@ -2,16 +2,6 @@ body {
   font-family: "Georgia", serif;
 }
 
-.check {
-  display: none;
-}
-
-.icon {
-  background: steelblue;
-  height: 30px;
-  width: 30px;
-}
-
 .main {
   position: relative;
   left: 100px;
@@ -155,6 +145,20 @@ div.tooltip {
   left: 0;
   width: 80px;
   background: lightgray;
+}
+
+.check {
+  display: none;
+}
+
+.icon {
+  background: lightgray;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-enabled {
+  background: steelblue;
 }
 
 /* Sidebar */

@@ -59,10 +59,13 @@ div.tooltip {
 
 .slider-button {
     width: 40px;
-    cursor: pointer;
-    display: inline-block;
+    height: 40px;
     vertical-align: top;
-    padding-top: 13px;
+    margin-top: 13px;
+    background: url(../img/icons/play-button.png);
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+    border: none;
 }
 
 .d3slider {

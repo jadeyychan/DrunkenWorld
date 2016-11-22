@@ -15,7 +15,7 @@ function set_country_color(d, year) {
     if (consumption[country] && get_consumption(country, alc_types, year)) {
         return colorScale(get_consumption(country, alc_types, year));
     } else {
-        return "grey";
+        return "#b5b5b5";
     }
 }
 
@@ -25,11 +25,11 @@ function set_tooltip(d, year) {
         .duration(200)      
         .style("opacity", .9);
     if (consumption[country]) {    
-        tooltip.html(country + "<br />Alcohol: " + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year) 
+        tooltip.html(country + "<br />" + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year) 
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     } else {
-        tooltip.html(country + "<br />Alcohol: N/A")  
+        tooltip.html(country + "<br />N/A")  
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     }
@@ -62,12 +62,17 @@ alc_types = ["Wine", "Beer", "Spirits"];
 
 $('.check').on("change", function() {
     var check = $(this).attr('checked', this.checked);
-    if (check[0].checked) {
+    var id = this.value;
+    if (check[0].checked) {    
         alc_types.push(this.value);
+        var spirits_div = $("#"+id);
+        $("#"+id).addClass("icon-enabled");
     }
     else {
         var index = alc_types.indexOf(this.value);
         alc_types.splice(index, 1);
+        
+        $("#"+id).removeClass("icon-enabled");
     }
     console.log(alc_types);
     year = String(self.slider.value());
@@ -88,7 +93,7 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 8])
     .on("zoom", zoomed);
 
-svg = d3.select("body").append("svg")
+svg = d3.select(".main-container").append("svg")
     .attr("width", width)
     .attr("height", height)
     .call(zoom);
@@ -103,11 +108,12 @@ svg.append("use")
     .attr("xlink:href", "#sphere");
 
 // Define the div for the tooltip
-var tooltip = d3.select("body").append("div")   
+var tooltip = d3.select(".main-container").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
 
-var g = svg.append("g");
+var g = svg.append("g")
+           .attr("id", "map");
 
 d3.json("data/map/world-110m.json", function(error, world) {
     if (error) throw error;
@@ -137,12 +143,8 @@ function zoomed() {
     var t = d3.event.translate,
         s = d3.event.scale;
 
-    // console.log(s, t);
-
     t[0] = Math.min(0, Math.max(width - width * s, t[0]));
     t[1] = Math.min(0, Math.max(height - height * s, t[1]));
-
-    console.log(s, t);
 
     zoom.translate(t);
 

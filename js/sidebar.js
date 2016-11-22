@@ -8,9 +8,9 @@ function sidebar_append(d, year) {
     var info;
 
     if (consumption[country]) { 
-        info = country + " | Alcohol: " + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year; 
+        info = country + " | " + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year; 
     } else {
-        info = country + " | Alcohol: N/A";
+        info = country + " | N/A";
     }
 
     if(!$("#"+d.id).length) { // country is not already selected

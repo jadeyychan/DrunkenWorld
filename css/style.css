@@ -140,11 +140,8 @@ div.tooltip {
 /* Filter*/
 .filter {
   position: absolute;
-  top: 10px;
-  bottom: 0;
+  top: 0px;
   left: 0;
-  width: 80px;
-  background: lightgray;
 }
 
 .check {

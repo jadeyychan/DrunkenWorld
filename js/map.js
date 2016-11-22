@@ -68,13 +68,6 @@ alc_types = ["Wine", "Beer", "Spirits"];
 $('.check').on("change", function() {
     var check = $(this).attr('checked', this.checked);
     var id = this.value;
-    // var id = check[0].id;
-    // $("#"+id).click(function() { 
-    //     console.log(this);
-    //     this.style.background = "red";
-    //     this.style.color = "blue";
-    //     this.style.backgroundColor = "purple";
-    // });
     if (check[0].checked) {    
         alc_types.push(this.value);
         var spirits_div = $("#"+id);

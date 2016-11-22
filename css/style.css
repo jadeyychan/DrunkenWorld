@@ -1,10 +1,10 @@
 body {
-  font-family: "Georgia", serif;
+    font-family: "Georgia", serif;
 }
 
 .main {
-  position: relative;
-  left: 100px;
+    position: relative;
+    left: 100px;
 }
 
 /* Map */
@@ -54,33 +54,33 @@ div.tooltip {
 
 /* slider code */
 .d3slider {
-  z-index: 2;
-  height: 100%;
-  background: none;
-  width: 80%;
+    z-index: 2;
+    height: 100%;
+    background: none;
+    width: 80%;
 }
 
 .d3slider-rect-range {
-  fill: #777;
-  stroke: none;
+    fill: #777;
+    stroke: none;
 }
 
 .d3slider-rect-value {
-  fill: #006EE3;
-  stroke: none;
+    fill: #006EE3;
+    stroke: none;
 }
 
 .d3slider-axis {
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .d3slider-axis path {
-  display: none;
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+    display: none;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .d3slider-axis line {
@@ -90,25 +90,25 @@ div.tooltip {
 }
 
 .d3slider text {
-  font: 10px sans-serif;
+    font: 10px sans-serif;
 }
 
 .tick.minor text {
-  display: none;
+    display: none;
 }
 
 .tick line {
-  stroke-width: 1;
+    stroke-width: 1;
 }
 .tick.minor line {
-  stroke-width: 1;
-  stroke: #bbb;
+    stroke-width: 1;
+    stroke: #bbb;
 }
 
 .dragger rect {
-  fill: #71ACE3;
-  stroke: none;
-  z-index: 3;
+    fill: #71ACE3;
+    stroke: none;
+    z-index: 3;
 }
 
 .dragger line {

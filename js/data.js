@@ -65,7 +65,7 @@ $.ajax({
             if (!consumption[country]) consumption[country] = { };
             
             // aggregate annual data for each alc type
-            consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), true);
+            consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), (country == "Libya" ? true : false));
         }
         console.log("consumption data loaded...");
     }

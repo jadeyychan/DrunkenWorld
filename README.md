@@ -7,6 +7,8 @@ FUNCTIONAL THINGS TO DO:
 - [ ] Figure out reasoning for grey coloring (???)
 - [ ] Panning and zooming containment
 - [ ] Add "About" section
+- [ ] Fix bug on "play" button (multiple plays in a row)
+- [ ] Update data for Sudan and Libya
 
 STYLE THINGS TO DO:
 - [ ] Filter icons

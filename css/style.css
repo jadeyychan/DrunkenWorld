@@ -147,6 +147,20 @@ div.tooltip {
   background: lightgray;
 }
 
+.check {
+  display: none;
+}
+
+.icon {
+  background: lightgray;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-enabled {
+  background: steelblue;
+}
+
 /* Sidebar */
 .sidebar {
   position: absolute;

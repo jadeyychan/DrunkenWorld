@@ -67,12 +67,24 @@ alc_types = ["Wine", "Beer", "Spirits"];
 
 $('.check').on("change", function() {
     var check = $(this).attr('checked', this.checked);
-    if (check[0].checked) {
+    var id = this.value;
+    // var id = check[0].id;
+    // $("#"+id).click(function() { 
+    //     console.log(this);
+    //     this.style.background = "red";
+    //     this.style.color = "blue";
+    //     this.style.backgroundColor = "purple";
+    // });
+    if (check[0].checked) {    
         alc_types.push(this.value);
+        var spirits_div = $("#"+id);
+        $("#"+id).addClass("icon-enabled");
     }
     else {
         var index = alc_types.indexOf(this.value);
         alc_types.splice(index, 1);
+        
+        $("#"+id).removeClass("icon-enabled");
     }
     console.log(alc_types);
     year = String(self.slider.value());

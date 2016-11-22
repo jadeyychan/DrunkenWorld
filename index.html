@@ -4,35 +4,32 @@
     <meta charset="utf-8">
     <title>COMP-177: maybs_wine</title>
 
-    <!-- importing d3 v3, toposon.js, and jQuery -->
+    <!-- importing jQuery, d3 v3, toposon.js, and slider lib -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/lib/d3-slider.js"></script>
 
     <!-- styling -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- d3 slider library -->
-    <script src="js/lib/d3-slider.js"></script>
-    <!-- <script src="js/lib-slider.js"></script> -->
 </head>
 <body>
     <div class="main-container">
 
-        <div class = "filter">
+        <div class="filter">
             <label>
-                <input class = "check" type="checkbox" value="Wine" checked>
+                <input class="check" type="checkbox" value="Wine" checked>
                 <img class="icon icon-enabled" id="Wine" src="img/icons/wine.png"/>  
             </label>
             <br />
             <label>
-                <input class = "check" type="checkbox" value="Beer" checked> 
+                <input class="check" type="checkbox" value="Beer" checked> 
                 <img class="icon icon-enabled"  id="Beer" src="img/icons/beer.png"/> 
             </label>
             <br />
             <label>
-                <input class = "check" type="checkbox" value="Spirits" checked> 
+                <input class="check" type="checkbox" value="Spirits" checked> 
                 <img class="icon icon-enabled" id="Spirits" src="img/icons/cocktail.png"/>
             </label>
         </div>

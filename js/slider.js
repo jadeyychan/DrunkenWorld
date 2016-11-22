@@ -1,11 +1,11 @@
 var min_year = 1960;
-var max_year = 2012;
+var max_year = 2010;
 
 // Initialize slider
 var slider = d3.slider()
 	.min(min_year)
 	.max(max_year)
-	.tickValues(d3.range(min_year, max_year, 10))
+	.tickValues(d3.range(min_year, max_year + 1, 10))
 	.stepValues(d3.range(min_year, max_year + 1, 1))
 	.showRange(true)
 	.value(init_year)

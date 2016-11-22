@@ -11,7 +11,7 @@ function get_consumption(country, alc_types, year) {
 }
 
 function set_country_color(d, year) {
-    var country   = country_ids[String(d.id)];
+    var country = country_ids[String(d.id)];
     if (consumption[country] && get_consumption(country, alc_types, year)) {
         return colorScale(get_consumption(country, alc_types, year));
     } else {
@@ -20,6 +20,9 @@ function set_country_color(d, year) {
 }
 
 function set_tooltip(d, year) {
+    // skip countries that cannot be distinguished
+    if (String(d.id) == "-99") return;
+
     var country = country_ids[String(d.id)];
     tooltip.transition()        
         .duration(200)      

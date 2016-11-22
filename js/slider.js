@@ -21,16 +21,20 @@ var slider = d3.slider()
 // Render the slider in the div
 d3.select('.slider').call(slider);
 
+
 // Animate button
 $('.slider-button').click(function() {
     time_travel(min_year);
 });
 
 function time_travel(pos) {
+    $('.slider-button').prop('disabled', true);
     setTimeout(function() {
         slider.setValue(pos);
         if (pos < max_year) {
             time_travel(++pos);
-       }
-   }, 80);
+        } else {
+            $('.slider-button').prop('disabled', false);
+        }
+    }, 80);
 }

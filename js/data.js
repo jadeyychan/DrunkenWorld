@@ -38,7 +38,7 @@ function aggregate_annual_data(line, loud) {
                 var inc_v = (end_v - start_v) / (end_y - start_y);
 
                 for (var k = 1; k < start_y - end_y; k++) {
-                    years[start_y - k] = String(parseFloat(start_v) + (inc_v * k));
+                    years[start_y - k] = String(parseFloat(start_v) + (-inc_v * k));
                 }
             }
             searchForNull = false;
@@ -48,7 +48,7 @@ function aggregate_annual_data(line, loud) {
     return years;
 }
 
-// pull in consumption data from CSV file
+// pull in consumption and country code data from CSV file
 $.ajax({
     type: "GET",
     url: "data/consumption/consumption-allyears.csv",
@@ -61,29 +61,16 @@ $.ajax({
             var alc_type = line[1];
             var id       = line[2];
 
-            // add country to data object if not already in it
+            // add country id to data object
+            if (!country_ids[String(id)]) country_ids[String(id)] = country;
+
+            // add country to consumption data object if not already in it
             if (!consumption[country]) consumption[country] = { };
             
             // aggregate annual data for each alc type
-            consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), true);
+            consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), false);
         }
-        console.log("consumption data loaded...");
     }
 });
-
-// pull in country ids from CSV file
-$.ajax({
-    type: "GET",
-    url: "data/map/country-codes.csv",
-    dataType: "text",
-    success: function(data) {
-        var lines = data.split(/\r\n|\n/);
-        for (var i = 1; i < lines.length; i++) {
-            var line = lines[i].split(',');
-            country_ids[String(line[1])] = line[0];
-        }
-        console.log("country code data loaded...");
-    }
-})
 
 

@@ -11,25 +11,28 @@ function get_consumption(country, alc_types, year) {
 }
 
 function set_country_color(d, year) {
-    var country   = country_ids[String(d.id)];
+    var country = country_ids[String(d.id)];
     if (consumption[country] && get_consumption(country, alc_types, year)) {
         return colorScale(get_consumption(country, alc_types, year));
     } else {
-        return "grey";
+        return "#b5b5b5";
     }
 }
 
 function set_tooltip(d, year) {
+    // skip countries that cannot be distinguished
+    if (String(d.id) == "-99") return;
+
     var country = country_ids[String(d.id)];
     tooltip.transition()        
         .duration(200)      
         .style("opacity", .9);
     if (consumption[country]) {    
-        tooltip.html(country + "<br />Alcohol: " + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year) 
+        tooltip.html(country + "<br />" + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year) 
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     } else {
-        tooltip.html(country + "<br />Alcohol: N/A")  
+        tooltip.html(country + "<br />N/A")  
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     }
@@ -45,20 +48,15 @@ function disable_tooltip() {
 /* initialize variables */
 /************************/
 var width  = $(window).width() * 0.8,
-    height = $(window).height() * 0.8,
-    scale0 = (width - 1) / 2 / Math.PI;
+    height = width / 2.073164161;
 
 var colorScale = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#920099"]);
 
-var quantize = d3.scale.quantile()
-    .domain([0, 4])
-    .range(d3.range(9).map(function(i) { return "country-" + i; }));
-
 var projection = d3.geo.equirectangular()
-    .scale(160)
-    .translate([width / 2, height / 2]);
+    .translate([width / 2, height / 2])
+    .scale(width / 2 / Math.PI);
 
 var path = d3.geo.path()
     .projection(projection);
@@ -92,9 +90,16 @@ init_year = 1990;
 /*****************/
 /* build the map */
 /*****************/
-svg = d3.select("body").append("svg")
+
+// zoom code
+var zoom = d3.behavior.zoom()
+    .scaleExtent([1, 8])
+    .on("zoom", zoomed);
+
+svg = d3.select(".main-container").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .call(zoom);
 
 svg.append("defs").append("path")
     .datum({type: "Sphere"})
@@ -102,17 +107,16 @@ svg.append("defs").append("path")
     .attr("d", path);
 
 svg.append("use")
-    .attr("class", "stroke")
-    .attr("xlink:href", "#sphere");
-
-svg.append("use")
     .attr("class", "fill")
     .attr("xlink:href", "#sphere");
 
 // Define the div for the tooltip
-var tooltip = d3.select("body").append("div")   
+var tooltip = d3.select(".main-container").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
+
+var g = svg.append("g")
+           .attr("id", "map");
 
 d3.json("data/map/world-110m.json", function(error, world) {
     if (error) throw error;
@@ -120,7 +124,7 @@ d3.json("data/map/world-110m.json", function(error, world) {
     var countries = topojson.feature(world, world.objects.countries).features,
         neighbors = topojson.neighbors(world.objects.countries.geometries);
 
-    svg.selectAll(".country")
+    g.selectAll(".country")
         .data(countries)
         .enter().insert("path", ".graticule")
         .attr("class", "country")
@@ -130,7 +134,7 @@ d3.json("data/map/world-110m.json", function(error, world) {
         .on("mouseout", function(d)  { disable_tooltip(); })
         .on("click", function(d)     { sidebar(d, init_year); });
 
-    svg.insert("path", ".graticule")
+    g.insert("path", ".graticule")
         .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
         .attr("class", "boundary")
         .attr("d", path);
@@ -138,34 +142,14 @@ d3.json("data/map/world-110m.json", function(error, world) {
 
 d3.select(self.frameElement).style("height", height + "px");
 
-// zoom code
-var zoom = d3.behavior.zoom()
-    .translate([width / 2, height / 2])
-    .scale(scale0)
-    .scaleExtent([scale0, 8 * scale0])
-    .on("zoom", zoomed);
-
-svg
-    .call(zoom)
-    .call(zoom.event);
-
-console.log(zoom.event);
-
 function zoomed() {
     var t = d3.event.translate,
         s = d3.event.scale;
 
-    console.log(t);
+    t[0] = Math.min(0, Math.max(width - width * s, t[0]));
+    t[1] = Math.min(0, Math.max(height - height * s, t[1]));
 
-    t[0] = Math.min(width / 2 * (s - 1), Math.max(width / 2 * (1 - s), t[0]));
-    t[1] = Math.min(height / 2 * (s - 1) + 230 * s, Math.max(height / 2 * (1 - s) - 230 * s, t[1]));
+    zoom.translate(t);
 
-    console.log(t);
-
-    projection
-        .translate(t)
-        .scale(s);
-
-    svg.selectAll("path")
-        .attr("d", path);
+    g.style("stroke-width", 1 / s).attr("transform", "translate(" + t + ")scale(" + s + ")");
 }

@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <title>COMP-177: maybs_wine</title>
 
-    <!-- importing d3 v3, toposon.js, and jQuery -->
+    <!-- importing jQuery, d3 v3, toposon.js, and slider lib -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/lib/d3-slider.js"></script>
 
     <!-- styling -->
     <link rel="stylesheet" href="css/style.css">
@@ -17,23 +18,33 @@
     <script src="js/lib/d3-slider.js"></script>
 </head>
 <body>
-    <div class = "filter">
-        <label><input class = "check" type="checkbox" value="Wine" checked>
-            <img class="icon icon-enabled" id="Wine" src="img/icons/wine.png"/>  
-        </label><br>
-        <label><input class = "check" type="checkbox" value="Beer" checked> 
-            <img class="icon icon-enabled"  id="Beer" src="img/icons/beer.png"/> 
-        </label><br>
-        <label><input class = "check" type="checkbox" value="Spirits" checked> 
-            <img class="icon icon-enabled" id="Spirits" src="img/icons/cocktail.png"/>
-        </label><br>
-    </div>
-    <script src="js/data.js"></script>
-    <script src="js/map.js"></script>
+    <div class="main-container">
 
-    <div class="slider"></div>
-    <button class="slider-button">PLAY</button>
-    <script src="js/slider.js"></script>
+        <div class="filter">
+            <label>
+                <input class="check" type="checkbox" value="Wine" checked>
+                <img class="icon icon-enabled" id="Wine" src="img/icons/wine.png"/>  
+            </label>
+            <br />
+            <label>
+                <input class="check" type="checkbox" value="Beer" checked> 
+                <img class="icon icon-enabled"  id="Beer" src="img/icons/beer.png"/> 
+            </label>
+            <br />
+            <label>
+                <input class="check" type="checkbox" value="Spirits" checked> 
+                <img class="icon icon-enabled" id="Spirits" src="img/icons/cocktail.png"/>
+            </label>
+        </div>
+        <script src="js/data.js"></script>
+        <script src="js/map.js"></script>
+
+        <div class="slider-container">
+            <button class="slider-button"></button>
+            <div class="slider"></div>
+        </div>
+        <script src="js/slider.js"></script>
+    </div>
 
     <div class="sidebar">
         <button class="sidebar_clear" onclick="sidebar_clear()"> Clear All </button>

@@ -5,15 +5,16 @@ FUNCTIONAL THINGS TO DO:
 - [x] Add slider
 - [x] Add filters
 - [x] Panning and zooming containment
-- [ ] Figure out reasoning for grey coloring (???)
+- [x] Figure out reasoning for grey coloring (???)
+- [x] Fix bug on "play" button (multiple plays in a row)
+- [x] Update data for Sudan and Libya
 - [ ] Add "About" section
-- [ ] Fix bug on "play" button (multiple plays in a row)
-- [ ] Update data for Sudan and Libya
 
 STYLE THINGS TO DO:
 - [x] Filter icons
 - [x] Play button icon
-- [ ] Style sidebar
 - [x] Move slider to bottom of screen
+- [ ] Style sidebar
 - [ ] Stylize color coordination
 - [ ] Overall clean up
+- [ ] Make everything responsive

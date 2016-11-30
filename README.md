@@ -18,6 +18,7 @@ STYLE THINGS TO DO:
 - [x] Filter icons
 - [x] Play button icon
 - [x] Move slider to bottom of screen
+- [ ] Style sidebar
 - [ ] Stylize color coordination
 - [ ] Overall clean up
 - [ ] Style sidebar
@@ -25,3 +26,4 @@ STYLE THINGS TO DO:
 - [ ] Outline country: (Ben)
 			- on hover(?!)
 			- ones that you've clicked on in sidebar
+- [ ] Make everything responsive

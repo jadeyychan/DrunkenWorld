@@ -1,4 +1,5 @@
 data_max_year = 2015;
+data_min_year = 1960;
 
 // object that will contain annual alcohol data for each country
 consumption = { };

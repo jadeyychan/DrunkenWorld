@@ -187,6 +187,11 @@ div.tooltip {
 }
 
 .sidebar_item {
-  background-color: gray;
   margin: 2px 0px 2px 0px;
+}
+
+.sidebar .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }

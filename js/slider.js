@@ -1,5 +1,5 @@
-var min_year = 1960;
-var max_year = 2010;
+min_year = 1960;
+max_year = 2010;
 
 // Initialize slider
 var slider = d3.slider()

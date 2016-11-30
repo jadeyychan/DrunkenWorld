@@ -8,7 +8,11 @@ FUNCTIONAL THINGS TO DO:
 - [x] Figure out reasoning for grey coloring (???)
 - [x] Fix bug on "play" button (multiple plays in a row)
 - [x] Update data for Sudan and Libya
+- [ ] Add landing page + about section (Jade)
 - [ ] Add "About" section
+- [ ] Add line graph on sidebar(!) 
+- [ ] Tooltip -->   Country (year)
+					"All", "wine, beer", "beer": XXL (Rebecca)
 
 STYLE THINGS TO DO:
 - [x] Filter icons
@@ -17,4 +21,9 @@ STYLE THINGS TO DO:
 - [ ] Style sidebar
 - [ ] Stylize color coordination
 - [ ] Overall clean up
+- [ ] Style sidebar
+- [ ] Tooltip stying
+- [ ] Outline country: (Ben)
+			- on hover(?!)
+			- ones that you've clicked on in sidebar
 - [ ] Make everything responsive

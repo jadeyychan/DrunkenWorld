@@ -11,7 +11,7 @@ function pull_annual_data(country) {
                 return null;
             }
         }
-        annual_data[year - min_year] = year_sum;
+        if (year_sum > 0) annual_data.push({"year": year, "value": year_sum});
     }
     return annual_data;
 }
@@ -34,21 +34,65 @@ function sidebar_append(d, year) {
     if(!$("#side"+d.id).length) { // country is not already selected
     	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>" + country + "</div>");
 
-        var lineplot = d3.select("#side" + d.id).append("svg")
-            .attr("width", 200)
-            .attr("height", 150);
+        var linewidth  = 240;
+        var lineheight = 120;
 
-        var x = d3.time.scale().range([0, 200]);
-        var y = d3.scale.linear().range([150, 0]);
+        var linesvg = d3.select("#side" + d.id).append("svg")
+            .attr("width", linewidth + 50)
+            .attr("height", lineheight + 50);
+
+        var lineg = linesvg.append("g");
+
+        var x = d3.scale.linear().range([0, linewidth]);
+        var y = d3.scale.pow().exponent(.5).range([lineheight, 0]);
         var line = d3.svg.line().x(function(d) { return x(d.year);  })
                                 .y(function(d) { return y(d.value); });
 
-        var ds = pull_annual_data(country).map(function(d,i) { return {"value": d, "year": 1960 + i}; });
+        var ds = pull_annual_data(country);
 
         x.domain([min_year, max_year]);
         y.domain([0, 35]);
 
-        lineplot.append("path").datum(ds).attr("class", "line").attr("d", line);
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .tickValues([1970, 1985, 2000])
+            .tickFormat(function(d) { return String(d); })
+            .innerTickSize(1)
+            .outerTickSize(1)
+            .orient("bottom");
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .tickValues([1,5,12,20,30])
+            .innerTickSize(1)
+            .outerTickSize(1)
+            .orient("left");
+
+        linesvg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(39,"+ lineheight + ")")
+            .call(xAxis);
+
+        linesvg.append("g")
+              .attr("class", "y axis")
+              .attr("transform", "translate(40,0)")
+              .call(yAxis)
+            .append("text")
+              .attr("transform", "translate(-42,18) rotate(-90)")
+              .attr("y", 6)
+              .attr("dy", ".71em")
+              .style("text-anchor", "end")
+              .style("font-size","12px")
+              .text("Consumption (L)");
+
+        linesvg.selectAll(".tick > text")
+            .style("font-size", "12px");
+
+        linesvg.append("path")
+            .datum(ds)
+            .attr("class", "line")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)");
     };
 }
 

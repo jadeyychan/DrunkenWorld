@@ -100,9 +100,15 @@ function sidebar_remove(d) {
     /* Removing sidebar item */
 	$("#side"+d.id).click(function() {
 		$("#side"+d.id).remove();
+        d3.select('.country#c' + d.id).style("stroke", "none");
 	});
 }
 
 function sidebar_clear() {
-	$(".sidebar_item").remove();
+    var items = $(".sidebar_item");
+    for (var i = 0; i < items.length; i++) {
+        var cid = $(items[i]).attr("id").replace("side","");
+        d3.select('.country#c' + cid).style("stroke", "none");
+        $(items[i]).remove();
+    }
 }

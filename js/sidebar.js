@@ -28,7 +28,7 @@ function sidebar_append(d, year) {
 
     	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>" + country + "</div>");
 
-        var linewidth  = 240;
+        var linewidth  = 190;
         var lineheight = 120;
 
         var linesvg = d3.select("#side" + d.id).append("svg")
@@ -99,7 +99,7 @@ function update_sidebar() {
 }
 
 function update_data(id) {
-    var linewidth  = 240;
+    var linewidth  = 190;
     var lineheight = 120;
 
     var x = d3.scale.linear().range([0, linewidth]);

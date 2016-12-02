@@ -11,14 +11,46 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="js/lib/d3-slider.js"></script>
 
+    <script src="js/page.js"></script>
+
     <!-- styling -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Google Fonts: Montserrat, bold -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
 
-    <!-- d3 slider library -->
-    <script src="js/lib/d3-slider.js"></script>
 </head>
 <body>
-    <div class="main-container">
+
+    <!-- Help Button  -->
+    <div class="info" onclick="show_help()"> 
+        <img class="i" src="img/icons/info.png"/> 
+        <img class="x hidden" src="img/icons/close.png"/> 
+    </div> 
+
+    <!-- Main landing page  -->
+    <div class="landing-page">
+        <div class="landing-line animated fadeInUp">
+            <div class="landing-container">
+                <div class="title">
+                    ANONYMOUS <br>
+                    ALCOHOLICS
+                </div>
+                <button class="lp-button visit" onclick="show_visit()"> Let's take a look! </button> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Page  -->
+    <div class="info-page hidden">
+        WHAT DO I DO WITH LIFE?!?!?!??!?!?!?!?!??!
+    </div>
+
+    <!-- Visualization Page  -->
+    <div class="main-container hidden">
+        <div class="toolbar" onclick="show_landing_page()">
+            Anonymous Alcoholics
+        </div>
 
         <div class="filter">
             <label>

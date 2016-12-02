@@ -23,15 +23,9 @@ function sidebar(d, year) {
 }
 
 function sidebar_append(d, year) {
-    var info;
-
-    if (consumption[country]) { 
-        info = country + " | " + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year; 
-    } else {
-        info = country + " | N/A";
-    }
-
     if(!$("#side"+d.id).length) { // country is not already selected
+        console.log(d.id);
+
     	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>" + country + "</div>");
 
         var linewidth  = 240;
@@ -94,6 +88,31 @@ function sidebar_append(d, year) {
             .attr("d", line)
             .attr("transform", "translate(39,0)");
     };
+}
+
+function update_sidebar() {
+    var items = $(".sidebar_item");
+    for (var i = 0; i < items.length; i++) {
+        var cid = $(items[i]).attr("id").replace("side","");
+        update_data(cid);
+    }
+}
+
+function update_data(id) {
+    var linewidth  = 240;
+    var lineheight = 120;
+
+    var x = d3.scale.linear().range([0, linewidth]);
+    var y = d3.scale.pow().exponent(.5).range([lineheight, 0]);
+    var line = d3.svg.line().x(function(d) { return x(d.year);  })
+                            .y(function(d) { return y(d.value); });
+
+    x.domain([min_year, max_year]);
+    y.domain([0, 35]);
+
+    var nsvg = d3.select("#side" + id + " .line");
+    var ds = pull_annual_data(country_ids[id]);
+    nsvg.transition().attr("d", line(ds))
 }
 
 function sidebar_remove(d) {

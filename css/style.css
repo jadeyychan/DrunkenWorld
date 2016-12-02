@@ -218,7 +218,7 @@ div.tooltip {
   width: 300px;
   border: solid 1px gray;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: scroll;
 }
 
 .sidebar_item {

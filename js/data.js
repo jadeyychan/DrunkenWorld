@@ -4,6 +4,7 @@ data_min_year = 1960;
 // object that will contain annual alcohol data for each country
 consumption = { };
 country_ids = { };
+data_loaded = false;
 
 function aggregate_annual_data(line, loud) {
     var years = { };
@@ -71,6 +72,7 @@ $.ajax({
             // aggregate annual data for each alc type
             consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), false);
         }
+        init_map();
     }
 });
 

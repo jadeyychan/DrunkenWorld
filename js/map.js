@@ -147,8 +147,13 @@ function init_map() {
                     d3.select('.country#c' + d.id).style("stroke", "none");
                 }
 
-                if ($('.sidebar').css('display') == 'none') $('.sidebar').slideToggle();
-                if ($('.sidebar_item').length == 0) $('.sidebar').slideToggle();
+                if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
+                    $('.sidebar').slideDown();
+                    $('.main-container').css('margin','inherit')
+                } else if ($('.sidebar_item').length == 0) {
+                    $('.sidebar').slideUp();
+                    $('.main-container').css('margin','auto')
+                }
             });
 
         g.insert("path", ".graticule")

@@ -26,7 +26,7 @@ function sidebar_append(d, year) {
     if(!$("#side"+d.id).length) { // country is not already selected
         console.log(d.id);
 
-    	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>" + country + "</div>");
+    	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'><p>" + country + "</p></div>");
 
         var linewidth  = 190;
         var lineheight = 120;
@@ -72,7 +72,7 @@ function sidebar_append(d, year) {
               .attr("transform", "translate(40,0)")
               .call(yAxis)
             .append("text")
-              .attr("transform", "translate(-42,18) rotate(-90)")
+              .attr("transform", "translate(-40,17) rotate(-90)")
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")

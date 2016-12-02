@@ -22,11 +22,11 @@ STYLE THINGS TO DO:
 			- ones that you've clicked on in sidebar
 - [ ] Fix page layers --> slide transitions between them (Jade)
 - [ ] Sidebar: (Ben)
-			- Slide in and out
-			- Styling of each item
+    - [ ] Slide in and out
+	- [ ] Styling of each item
 - [ ] About page, currently blank (Jade)
 - [x] Make map take up 100%
-- [ ] Play button make it look pressed/disabled when pressed (Jade)
-- [ ] Timeline (Jade)
+- [ ] Stylize timeline (Jade)
+    - [ ] Play button make it look pressed/disabled when pressed (Jade)
 - [ ] Fix name at top of page (Jade)
 - [ ] Add blurb to front page about what our viz is

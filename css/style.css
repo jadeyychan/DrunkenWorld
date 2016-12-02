@@ -1,17 +1,17 @@
 body {
-    font-family: "Georgia", serif;
+    font-family: "Lato", sans-serif;
     margin: 0;
+    overflow-y: hidden;
 }
 
 .main-container {
-    width: 100%;
+    width: 85%;
     background-color: white;
     margin: auto;
 }
 
 .map-container {
-    width: 85%;
-    margin: auto;
+
 }
 
 
@@ -89,6 +89,7 @@ div.tooltip {
 /* slider code */
 .slider-container {
     margin: auto;
+    margin-top: -3px;
     width: 850px;
 }
 
@@ -191,8 +192,8 @@ div.tooltip {
 /* Filter*/
 .filter {
   position: absolute;
-  top: 20%;
-  left: 8px;
+  top: 30%;
+  left: 7.5%;
 }
 
 .check {
@@ -225,18 +226,44 @@ div.tooltip {
     height: 99.7vh;
     width: 250px;
     border: solid 1px gray;
-    overflow-y: scroll;
     overflow-x: hidden;
 }
 
 .sidebar_item {
   margin: 2px 0px 2px 0px;
+  cursor: pointer;
+}
+
+.sidebar_item p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: 14px;
 }
 
 .sidebar .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
+}
+
+.sidebar_clear {
+    width: 100px;
+    outline: none;
+    padding: 4px 0px 4px 0px;
+    border: solid orange 2px;
+    border-radius: 25px;
+    background-color: orange;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+.sidebar_clear:hover {
+  background-color: transparent;
+  color: orange;
 }
 
 /* Landing Page */
@@ -276,6 +303,7 @@ div.tooltip {
   background-color: orange;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .lp-button:hover {

@@ -8,22 +8,25 @@ FUNCTIONAL THINGS TO DO:
 - [x] Figure out reasoning for grey coloring (???)
 - [x] Fix bug on "play" button (multiple plays in a row)
 - [x] Update data for Sudan and Libya
-- [ ] Add landing page + about section (Jade)
-- [ ] Add "About" section
-- [ ] Add line graph on sidebar(!) 
-- [ ] Tooltip -->   Country (year)
+- [x] Add landing page + about section (Jade)
+- [x] Add line graph on sidebar(!) 
+- [x] Tooltip -->   Country (year)
 					"All", "wine, beer", "beer": XXL (Rebecca)
 
 STYLE THINGS TO DO:
 - [x] Filter icons
 - [x] Play button icon
 - [x] Move slider to bottom of screen
-- [ ] Style sidebar
-- [ ] Stylize color coordination
-- [ ] Overall clean up
-- [ ] Style sidebar
-- [ ] Tooltip stying
-- [ ] Outline country: (Ben)
+- [x] Outline country: (Ben)
 			- on hover(?!)
 			- ones that you've clicked on in sidebar
-- [ ] Make everything responsive
+- [ ] Fix page layers --> slide transitions between them (Jade)
+- [ ] Sidebar: (Ben)
+			- Slide in and out
+			- Styling of each item
+- [ ] About page, currently blank (Jade)
+- [x] Make map take up 100%
+- [ ] Play button make it look pressed/disabled when pressed (Jade)
+- [ ] Timeline (Jade)
+- [ ] Fix name at top of page (Jade)
+- [ ] Add blurb to front page about what our viz is

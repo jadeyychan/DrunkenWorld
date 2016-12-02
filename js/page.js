@@ -22,8 +22,8 @@ function show_help() {
 		$(".info-page").removeClass("hidden");
 		
 		/* Buttons */
-		$(".x").removeClass("hidden");
-		$(".i").addClass("hidden");
+		$(".x-button").removeClass("hidden");
+		$(".i-button").addClass("hidden");
 
 	} else {
 
@@ -35,7 +35,7 @@ function show_help() {
 		$("."+CURRENT_PAGE).removeClass("hidden");
 
 		/* Buttons */
-		$(".x").addClass("hidden");
-		$(".i").removeClass("hidden");
+		$(".x-button").addClass("hidden");
+		$(".i-button").removeClass("hidden");
 	}
 }

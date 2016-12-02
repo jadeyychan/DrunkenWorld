@@ -51,7 +51,7 @@ init_year  = 1990;
 colorScale = null;
 
 function init_map() {
-    width  = $(window).width() * 0.8,
+    width  = $(window).width() * 0.85,
     height = width / 2.073164161;
 
     colorScale = d3.scale.pow().exponent(.2)
@@ -146,6 +146,9 @@ function init_map() {
                     $("#side"+d.id).remove();
                     d3.select('.country#c' + d.id).style("stroke", "none");
                 }
+
+                if ($('.sidebar').css('display') == 'none') $('.sidebar').slideToggle();
+                if ($('.sidebar_item').length == 0) $('.sidebar').slideToggle();
             });
 
         g.insert("path", ".graticule")

@@ -115,7 +115,7 @@ function init_map() {
         .attr("xlink:href", "#sphere");
 
     // Define the div for the tooltip
-    tooltip = d3.select(".main-container").append("div")   
+    tooltip = d3.select(".map-container").append("div")   
         .attr("class", "tooltip")               
         .style("opacity", 0);
 

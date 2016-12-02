@@ -86,7 +86,8 @@ function sidebar_append(d, year) {
             .datum(ds)
             .attr("class", "line")
             .attr("d", line)
-            .attr("transform", "translate(39,0)");
+            .attr("transform", "translate(39,0)")
+            .style("stroke", "orange");
     };
 }
 
@@ -120,6 +121,11 @@ function sidebar_remove(d) {
 	$("#side"+d.id).click(function() {
 		$("#side"+d.id).remove();
         d3.select('.country#c' + d.id).style("stroke", "none");
+
+        if ($(".sidebar_item").length == 0) {
+            $('.sidebar').slideUp();
+            $('.main-container').animate({'margin-left': '7.5%'}, 500);
+        }
 	});
 }
 

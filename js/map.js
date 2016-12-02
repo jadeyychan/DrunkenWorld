@@ -54,7 +54,7 @@ function init_map() {
     width  = $(window).width() * 0.85,
     height = width / 2.073164161;
 
-    colorScale = d3.scale.pow().exponent(.2)
+    colorScale = d3.scale.pow().exponent(.3)
         .domain([0, 30])
         .range(["white", "#920099"]);
 
@@ -140,7 +140,7 @@ function init_map() {
             .on("click", function(d)     {
                 if ($('.sidebar_item#side' + d.id).length == 0) {
                     sidebar(d, init_year); 
-                    d3.select(this).style("stroke", "#006EE3")
+                    d3.select(this).style("stroke", "orange")
                                    .style("stroke-width", 2);
                 } else {
                     $("#side"+d.id).remove();
@@ -149,10 +149,12 @@ function init_map() {
 
                 if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
                     $('.sidebar').slideDown();
-                    $('.main-container').css('margin','inherit')
-                } else if ($('.sidebar_item').length == 0) {
+                    $('.main-container').animate({'margin-left': '0'}, 500);
+                }
+
+                if ($('.sidebar_item').length == 0) {
                     $('.sidebar').slideUp();
-                    $('.main-container').css('margin','auto')
+                    $('.main-container').animate({'margin-left': '7.5%'}, 500);
                 }
             });
 

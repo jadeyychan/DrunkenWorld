@@ -14,8 +14,6 @@ body {
 
 }
 
-
-
 /* Info button */
 .info {
   position: absolute;
@@ -113,12 +111,12 @@ div.tooltip {
 }
 
 .d3slider-rect-range {
-    fill: #777;
+    fill: #b5b5b5;
     stroke: none;
 }
 
 .d3slider-rect-value {
-    fill: #006EE3;
+    fill: orange;
     stroke: none;
 }
 
@@ -192,8 +190,8 @@ div.tooltip {
 /* Filter*/
 .filter {
   position: absolute;
-  top: 30%;
-  left: 7.5%;
+  top: 35%;
+  left: 5px;
 }
 
 .check {
@@ -209,11 +207,11 @@ div.tooltip {
 }
 
 .icon:hover {
-  background: rgba(9 , 9, 9, 0.6);
+    background: rgba(150, 150, 150, 0.6);
 }
 
 .icon-enabled {
-  background: rgba(94, 172, 236, 0.8);
+    background: rgba(255, 165, 0, 0.8);
 }
 
 /* Sidebar */

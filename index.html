@@ -36,18 +36,22 @@
                     ANONYMOUS <br>
                     ALCOHOLICS
                 </div>
-                <button class="lp-button visit" onclick="show_visit()"> Let's take a look! </button> 
+                <button class="lp-button visit" onclick="show_viz()"> Let's take a look! </button> 
             </div>
         </div>
     </div>
 
     <!-- Help Page  -->
     <div class="info-page hidden">
-        WHAT DO I DO WITH LIFE?!?!?!??!?!?!?!?!??!
+        <div class="info-title">
+            HOW-TO:
+        </div>
+        <div class="info-video">
+        </div>
     </div>
 
     <!-- Visualization Page  -->
-    <div class="main-container hidden">
+    <div class="viz-page hidden">
         <div class="toolbar" onclick="show_landing_page()">
             Anonymous Alcoholics
         </div>
@@ -75,7 +79,7 @@
         <script src="js/data.js"></script>
 
         <div class="slider-container">
-            <button class="slider-button"></button>
+            <button class="slider-button slider-button-unpressed"></button>
             <div class="slider"></div>
         </div>
         <script src="js/slider.js"></script>
@@ -84,7 +88,7 @@
     <div class="sidebar">
         <div style='margin: auto; width: 205px; margin-bottom: 10px; margin-top: 5px;'>
             <button class="sidebar_clear" onclick="sidebar_clear()">Clear All</button>
-            <button class="sidebar_clear" onclick="$('.sidebar').slideUp(); $('.main-container').css('margin','auto');">Hide</button>
+            <button class="sidebar_clear" onclick="$('.sidebar').slideUp(); $('.viz-page').css('margin','auto');">Hide</button>
         </div>
     </div>
 

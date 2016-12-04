@@ -4,7 +4,7 @@ body {
     overflow-y: hidden;
 }
 
-.main-container {
+.viz-page {
     width: 85%;
     background-color: white;
     margin: auto;
@@ -29,10 +29,9 @@ body {
 /* Info Page */
 .info-page {
   background-color: white;
-  width: 100%;
-  height: 100vh;
-  z-index: 5;
-  background-color: cornflowerblue;
+  width: calc(100%-8px);
+  height: 99vh; /* TODO: Fix height properly */
+  border: orange 4px solid;
 }
 
 .hidden {
@@ -87,19 +86,29 @@ div.tooltip {
 /* slider code */
 .slider-container {
     margin: auto;
-    margin-top: -3px;
+    /*margin-top: -3px;*/
     width: 850px;
+    padding-top: 20px;
 }
 
 .slider-button {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     vertical-align: top;
-    margin-top: 13px;
-    background: url(../img/icons/play-button.png);
-    background-repeat: no-repeat;
-    background-size: 40px 40px;
+    margin-top: 15px;
     border: none;
+}
+
+.slider-button-unpressed {
+  background: url(../img/icons/play-button-unpressed.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+}
+
+.slider-button-pressed {
+  background: url(../img/icons/play-button-pressed.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
 }
 
 .d3slider {
@@ -140,7 +149,8 @@ div.tooltip {
 }
 
 .d3slider text {
-    font: 10px sans-serif;
+    font-family: Lato;
+    font-size: 10px;
 }
 
 .tick.minor text {
@@ -168,11 +178,12 @@ div.tooltip {
 
 .dragger-outer {
   fill: #fff;
-  stroke: #000;
+  stroke: #696969;
+  stroke-width: 2;
 }
 
 .dragger-inner {
-  fill: #B30424;
+  fill: transparent;
   stroke: none;
 }
 

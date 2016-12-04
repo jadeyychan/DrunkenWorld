@@ -19,22 +19,26 @@ var slider = d3.slider()
     });
 
 // Render the slider in the div
-d3.select('.slider').call(slider);
+d3.select(".slider").call(slider);
 
 
 // Animate button
-$('.slider-button').click(function() {
+$(".slider-button").click(function() {
+    $(".slider-button").removeClass("slider-button-unpressed");
+    $(".slider-button").addClass("slider-button-pressed");
     time_travel(min_year);
 });
 
 function time_travel(pos) {
-    $('.slider-button').prop('disabled', true);
+    $(".slider-button").prop("disabled", true);
     setTimeout(function() {
         slider.setValue(pos);
         if (pos < max_year) {
             time_travel(++pos);
         } else {
-            $('.slider-button').prop('disabled', false);
+            $(".slider-button").prop("disabled", false);
+            $(".slider-button").addClass("slider-button-unpressed");
+             $(".slider-button").removeClass("slider-button-pressed");
         }
     }, 80);
 }

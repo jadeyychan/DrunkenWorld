@@ -124,7 +124,7 @@ function sidebar_remove(d) {
 
         if ($(".sidebar_item").length == 0) {
             $('.sidebar').slideUp();
-            $('.main-container').animate({'margin-left': '7.5%'}, 500);
+            $('.viz-page').animate({'margin-left': '7.5%'}, 500);
         }
 	});
 }

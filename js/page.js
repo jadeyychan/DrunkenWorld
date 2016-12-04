@@ -1,29 +1,29 @@
 var CURRENT_PAGE = "landing-page";
 
-function show_visit() {
-	CURRENT_PAGE = "main-container";
-
-	if ($(".main-container").hasClass("hidden")) {
-		$(".main-container").removeClass("hidden");
-	}
+function show_viz() {
+	$(".viz-page").removeClass("hidden");
 	$(".landing-page").slideUp("slow");
+	CURRENT_PAGE = "viz-page";
 }
 
 function show_landing_page() {
-	CURRENT_PAGE = "landing-page";
 	$(".landing-page").slideDown("slow");
+	CURRENT_PAGE = "landing-page";
 }
 
 function show_help() {
 	if ($(".info-page").hasClass("hidden")) {
 
+		/* show_info_page */
+		$(".info-page").removeClass("hidden");
 		$("."+CURRENT_PAGE).slideUp("slow");
 
-		$(".info-page").removeClass("hidden");
-		
 		/* Buttons */
 		$(".x-button").removeClass("hidden");
 		$(".i-button").addClass("hidden");
+
+		// remove z- index
+		$(".info-page").css("z-index", "0");
 
 	} else {
 
@@ -39,3 +39,15 @@ function show_help() {
 		$(".i-button").removeClass("hidden");
 	}
 }
+
+
+/*
+landing page 5
+
+info!
+
+viz page
+
+info
+
+*/

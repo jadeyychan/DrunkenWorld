@@ -31,7 +31,7 @@ body {
 }
 
 .toolbar:hover {
-  color: orange;
+  color: #1F5673;
 }
 
 /* Info Page */
@@ -39,7 +39,7 @@ body {
   background-color: white;
   width: calc(100%-8px);
   height: 99vh; /* TODO: Fix height properly */
-  border: orange 4px solid;
+  border: #1F5673 4px solid;
 }
 
 .info-title {
@@ -307,7 +307,7 @@ div.tooltip {
 
 .landing-line {
   margin-left: 15%;
-  border-left: solid orange 5px;
+  border-left: solid #1F5673 5px;
 }
 
 .landing-container {
@@ -326,9 +326,9 @@ div.tooltip {
   outline: none;
   margin-top: 5%;
   padding: 8px 0px 8px 0px;
-  border: solid orange 2px;
+  border: solid #1F5673 2px;
   border-radius: 25px;
-  background-color: orange;
+  background-color: #1F5673;
   color: white;
   font-size: 15px;
   cursor: pointer;
@@ -336,6 +336,6 @@ div.tooltip {
 
 .lp-button:hover {
   background-color: transparent;
-  color: orange;
+  color: #1F5673;
 }
 

@@ -24,8 +24,6 @@ function sidebar(d, year) {
 
 function sidebar_append(d, year) {
     if(!$("#side"+d.id).length) { // country is not already selected
-        console.log(d.id);
-
     	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'><p>" + country + "</p></div>");
 
         var linewidth  = 190;
@@ -84,7 +82,6 @@ function sidebar_append(d, year) {
 
         var lc = colorScale_All(20);
 
-        console.log('testing...', alc_types.sort());
         if (alc_types == "Beer") {
             lc = colorScale_Beer(20);
         } else if (alc_types == "Wine") {
@@ -133,7 +130,6 @@ function update_data(id) {
 
     var lc = colorScale_All(20);
 
-    console.log('testing...', alc_types.sort());
     if (alc_types == "Beer") {
         lc = colorScale_Beer(20);
     } else if (alc_types == "Wine") {

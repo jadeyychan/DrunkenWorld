@@ -258,22 +258,22 @@ div.tooltip {
   stroke-width: 1.5px;
 }
 
-.sidebar_clear {
+.sidebar_btn {
     width: 100px;
     outline: none;
     padding: 4px 0px 4px 0px;
-    border: solid orange 2px;
+    border: solid #1F5673 2px;
     border-radius: 25px;
-    background-color: orange;
+    background-color: #1F5673;
     color: white;
     font-size: 12px;
     cursor: pointer;
 
 }
 
-.sidebar_clear:hover {
+.sidebar_btn:hover {
   background-color: transparent;
-  color: orange;
+  color: #1F5673;
 }
 
 /* Landing Page */

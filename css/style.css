@@ -11,19 +11,27 @@ body {
 }
 
 .map-container {
+  padding-top: 30px;
 
 }
 
-/* Info button */
-.info {
+.hidden {
+  display: none;
+}
+
+/* Toolbar */
+.toolbar {
+  font-size: 20px;
+  font-style: italic;
+  margin: 10px 0px 0px 30px;
+  color: gray;
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  z-index: 10;
+  top: 5px;
+  left: 0px;
 }
 
-.info img {
-  width: 20px;
+.toolbar:hover {
+  color: orange;
 }
 
 /* Info Page */
@@ -34,8 +42,18 @@ body {
   border: orange 4px solid;
 }
 
-.hidden {
-  display: none;
+.info-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 100px 0 20px 0;
+  margin-left: 30%;
+}
+
+.info-video {
+  background-color: gray;
+  width: 40%;
+  height: 50%;
+  margin: auto;
 }
 
 /* Map */

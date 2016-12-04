@@ -243,6 +243,16 @@ div.tooltip {
 }
 
 /* Sidebar */
+.dropdown-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.dropdown-btn img {
+    width: 35px;
+}
+
 .sidebar {
     display: none;
     position: absolute;

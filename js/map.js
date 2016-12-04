@@ -12,10 +12,47 @@ function get_consumption(country, alc_types, year) {
 
 function set_country_color(d, year) {
     var country = country_ids[String(d.id)];
-    if (consumption[country] && get_consumption(country, alc_types, year)) {
-        return colorScale(get_consumption(country, alc_types, year));
-    } else {
-        return "#b5b5b5";
+    if (alc_types == "Wine") {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_Wine(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
+    else if (alc_types == "Beer") {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_Beer(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
+    else if (alc_types == "Spirits") {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_Spirits(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
+    else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") == -1 ) {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_WS(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
+    else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Wine") == -1 ) {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_BS(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
+    else {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
     }
 }
 
@@ -27,8 +64,16 @@ function set_tooltip(d, year) {
     tooltip.transition()        
         .duration(200)      
         .style("opacity", .9);
-    if (consumption[country]) {    
-        tooltip.html(country + "<br />" + get_consumption(country, alc_types, year).toFixed(2) + " liters in " + year) 
+    if (consumption[country]) {  
+        pretty_alcs = alc_types[0];
+        for (i = 1; i < alc_types.length; i++) {
+            pretty_alcs = pretty_alcs + ", " + alc_types[i];
+        }
+        if (pretty_alcs == undefined) {
+            pretty_alcs = "N/A";
+        }
+        console.log(pretty_alcs);
+        tooltip.html(country + " (" + year + ")" + "<br />" + pretty_alcs + ": " + get_consumption(country, alc_types, year).toFixed(2) + " liters") 
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     } else {
@@ -50,9 +95,32 @@ function disable_tooltip() {
 var width  = $(window).width() * 0.8,
     height = width / 2.073164161;
 
+/************************/
+/*      Map Colors      */
+/************************/
 var colorScale = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#920099"]);
+
+var colorScale_Wine = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#960000"]);
+
+var colorScale_Beer = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#B75800"]);
+
+var colorScale_Spirits = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#4B7796"]);
+
+var colorScale_WS = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#702764"]);
+
+var colorScale_BS = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#416844"]);
 
 var projection = d3.geo.equirectangular()
     .translate([width / 2, height / 2])

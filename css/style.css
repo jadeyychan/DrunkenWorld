@@ -31,17 +31,19 @@ body {
 div.tooltip {   
     position: absolute;         
     text-align: center;         
-    width: 200px;                    
+    width: auto;                    
     height: 28px;                   
-    padding: 2px;               
+    padding: 6px;      
+    color: white;      
     font: 12px sans-serif;      
-    background: lightsteelblue; 
+    background: #1F5673; 
     border: 0px;        
     border-radius: 8px;         
-    pointer-events: none;           
+    pointer-events: none;   
+    /*box-shadow: 2px 2px 4px #CCC; */
 }
 
-.country-0 { fill:rgb(255,247,243); }
+/*.country-0 { fill:rgb(255,247,243); }
 .country-1 { fill:rgb(253,224,221); }
 .country-2 { fill:rgb(252,197,192); }
 .country-3 { fill:rgb(250,159,181); }
@@ -49,7 +51,7 @@ div.tooltip {
 .country-5 { fill:rgb(221,52,151); }
 .country-6 { fill:rgb(174,1,126); }
 .country-7 { fill:rgb(122,1,119); }
-.country-8 { fill:rgb(73,0,106); }
+.country-8 { fill:rgb(73,0,106); }*/
 
 /* slider code */
 .slider-container {
@@ -77,12 +79,14 @@ div.tooltip {
 }
 
 .d3slider-rect-range {
-    fill: #777;
+    fill: #C3C0C4;
+    /*fill: #777;*/
     stroke: none;
 }
 
 .d3slider-rect-value {
-    fill: #006EE3;
+    fill: #1F5673;
+    /*fill: #006EE3;*/
     stroke: none;
 }
 
@@ -173,7 +177,7 @@ div.tooltip {
 }
 
 .icon-enabled {
-  background: rgba(94, 172, 236, 0.8);
+  background: #1F5673;
 }
 
 /* Sidebar */

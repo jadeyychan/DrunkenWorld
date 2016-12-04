@@ -22,12 +22,6 @@
 </head>
 <body>
 
-    <!-- Help Button  -->
-    <div class="info" onclick="show_help()"> 
-        <img class="i-button" src="img/icons/info.png"/> 
-        <img class="x-button hidden" src="img/icons/close.png"/> 
-    </div> 
-
     <!-- Main landing page  -->
     <div class="landing-page">
         <div class="landing-line animated fadeInUp">
@@ -37,12 +31,16 @@
                     ALCOHOLICS
                 </div>
                 <button class="lp-button visit" onclick="show_viz();"> Let's take a look! </button> 
+                <button class="lp-button visit" onclick="show_help();"> How To </button> 
             </div>
         </div>
     </div>
 
     <!-- Help Page  -->
     <div class="info-page hidden">
+        <div class="toolbar" onclick="show_landing_page()">
+            Anonymous Alcoholics
+        </div>
         <div class="info-title">
             HOW-TO:
         </div>

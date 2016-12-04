@@ -178,3 +178,8 @@ function sidebar_clear() {
     }
     $('#sidebar_instruction').css('display','inherit')
 }
+
+$('.dropdown-btn').click(function() {
+    $('.sidebar').slideDown();
+    $('.viz-page').animate({'margin-left': '0'}, 500);
+});

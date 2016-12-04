@@ -93,15 +93,6 @@ div.tooltip {
     /*box-shadow: 2px 2px 4px #CCC; */
 }
 
-/*.country-0 { fill:rgb(255,247,243); }
-.country-1 { fill:rgb(253,224,221); }
-.country-2 { fill:rgb(252,197,192); }
-.country-3 { fill:rgb(250,159,181); }
-.country-4 { fill:rgb(247,104,161); }
-.country-5 { fill:rgb(221,52,151); }
-.country-6 { fill:rgb(174,1,126); }
-.country-7 { fill:rgb(122,1,119); }
-.country-8 { fill:rgb(73,0,106); }*/
 
 /* slider code */
 .slider-container {
@@ -241,8 +232,16 @@ div.tooltip {
     background: rgba(150, 150, 150, 0.6);
 }
 
-.icon-enabled {
-  background: #1F5673;
+.icon-enabled#Wine {
+  background: #960000;
+}
+
+.icon-enabled#Beer {
+  background: #B75800;
+}
+
+.icon-enabled#Spirits {
+  background: #4B7796;
 }
 
 /* Sidebar */

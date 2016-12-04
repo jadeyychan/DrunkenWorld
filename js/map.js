@@ -47,9 +47,16 @@ function set_country_color(d, year) {
             return "#DEDEE0";
         }
     }
+    else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 ) {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_BW(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
     else {
         if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale(get_consumption(country, alc_types, year));
+            return colorScale_All(get_consumption(country, alc_types, year));
         } else {
             return "#DEDEE0";
         }
@@ -99,10 +106,6 @@ var width  = $(window).width() * 0.8,
 /************************/
 /*      Map Colors      */
 /************************/
-var colorScale = d3.scale.pow().exponent(.2)
-    .domain([0, 30])
-    .range(["white", "#920099"]);
-
 var colorScale_Wine = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#960000"]);
@@ -123,6 +126,14 @@ var colorScale_BS = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#416844"]);
 
+var colorScale_BW = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#CC480C"]);
+
+var colorScale_All = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#034F49"]);
+
 var projection = d3.geo.equirectangular()
     .translate([width / 2, height / 2])
     .scale(width / 2 / Math.PI);
@@ -131,15 +142,10 @@ var path = d3.geo.path()
     .projection(projection);
 
 init_year  = 1990;
-colorScale = null;
 
 function init_map() {
     width  = $(window).width() * 0.85,
     height = width / 2.073164161;
-
-    colorScale = d3.scale.pow().exponent(.3)
-        .domain([0, 30])
-        .range(["white", "#920099"]);
 
     var projection = d3.geo.equirectangular()
         .translate([width / 2, height / 2])
@@ -244,7 +250,8 @@ function init_map() {
         g.insert("path", ".graticule")
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
             .attr("class", "boundary")
-            .attr("d", path);
+            .attr("d", path)
+            .style("stroke", "none");
     });
 
     d3.select(self.frameElement).style("height", height + "px");

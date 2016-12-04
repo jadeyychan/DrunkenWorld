@@ -82,12 +82,31 @@ function sidebar_append(d, year) {
         linesvg.selectAll(".tick > text")
             .style("font-size", "12px");
 
+        var lc = colorScale_All(20);
+
+        console.log('testing...', alc_types.sort());
+        if (alc_types == "Beer") {
+            lc = colorScale_Beer(20);
+        } else if (alc_types == "Wine") {
+            lc = colorScale_Wine(20);
+        } else if (alc_types == "Spirits") {
+            lc = colorScale_Spirits(20);
+        } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") == -1) {
+            lc = colorScale_BW(20);
+        } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 && alc_types.indexOf("Beer") != -1) {
+            lc = colorScale_WS(20);
+        } else if (alc_types.indexOf("Wine") == -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") != -1) {
+            lc = colorScale_BS(20)
+        }
+
         linesvg.append("path")
             .datum(ds)
             .attr("class", "line")
             .attr("d", line)
             .attr("transform", "translate(39,0)")
-            .style("stroke", "orange");
+            .style("stroke", lc);
+
+
     };
 }
 
@@ -111,9 +130,29 @@ function update_data(id) {
     x.domain([min_year, max_year]);
     y.domain([0, 35]);
 
+
+    var lc = colorScale_All(20);
+
+    console.log('testing...', alc_types.sort());
+    if (alc_types == "Beer") {
+        lc = colorScale_Beer(20);
+    } else if (alc_types == "Wine") {
+        lc = colorScale_Wine(20);
+    } else if (alc_types == "Spirits") {
+        lc = colorScale_Spirits(20);
+    } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") == -1) {
+        lc = colorScale_WS(20);
+    } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 && alc_types.indexOf("Beer") != -1) {
+        lc = colorScale_BW(20);
+    } else if (alc_types.indexOf("Wine") == -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") != -1) {
+        lc = colorScale_BS(20)
+    }
+
     var nsvg = d3.select("#side" + id + " .line");
     var ds = pull_annual_data(country_ids[id]);
-    nsvg.transition().attr("d", line(ds))
+    nsvg.transition()
+        .attr("d", line(ds))
+        .style("stroke", lc);
 }
 
 function sidebar_remove(d) {

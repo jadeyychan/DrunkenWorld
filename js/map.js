@@ -47,9 +47,16 @@ function set_country_color(d, year) {
             return "#DEDEE0";
         }
     }
+    else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 ) {
+        if (consumption[country] && get_consumption(country, alc_types, year)) {
+            return colorScale_BW(get_consumption(country, alc_types, year));
+        } else {
+            return "#DEDEE0";
+        }
+    }
     else {
         if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale(get_consumption(country, alc_types, year));
+            return colorScale_All(get_consumption(country, alc_types, year));
         } else {
             return "#DEDEE0";
         }
@@ -122,6 +129,14 @@ var colorScale_WS = d3.scale.pow().exponent(.2)
 var colorScale_BS = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#416844"]);
+
+var colorScale_BW = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#CC480C"]);
+
+var colorScale_All = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#034F49"]);
 
 var projection = d3.geo.equirectangular()
     .translate([width / 2, height / 2])

@@ -106,10 +106,6 @@ var width  = $(window).width() * 0.8,
 /************************/
 /*      Map Colors      */
 /************************/
-var colorScale = d3.scale.pow().exponent(.2)
-    .domain([0, 30])
-    .range(["white", "#920099"]);
-
 var colorScale_Wine = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#960000"]);
@@ -146,15 +142,10 @@ var path = d3.geo.path()
     .projection(projection);
 
 init_year  = 1990;
-colorScale = null;
 
 function init_map() {
     width  = $(window).width() * 0.85,
     height = width / 2.073164161;
-
-    colorScale = d3.scale.pow().exponent(.3)
-        .domain([0, 30])
-        .range(["white", "#920099"]);
 
     var projection = d3.geo.equirectangular()
         .translate([width / 2, height / 2])

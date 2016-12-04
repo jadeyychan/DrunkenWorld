@@ -11,7 +11,7 @@ body {
 }
 
 .map-container {
-  margin-top: 46px;
+  padding-top: 46px;
 }
 
 .hidden {
@@ -22,9 +22,9 @@ body {
 .toolbar {
   font-size: 20px;
   font-style: italic;
-  margin: 10px 0px 0px 30px;
+  padding: 10px 0px 0px 30px;
   color: #1F5673;
-  position: absolute;
+  position: fixed;
   top: 5px;
   left: 0px;
 }
@@ -43,7 +43,7 @@ body {
 .info-title {
   font-size: 20px;
   font-weight: bold;
-  margin: 100px 0 20px 0;
+  padding: 90px 0 20px 0;
   margin-left: 30%;
 }
 
@@ -243,6 +243,16 @@ div.tooltip {
 }
 
 /* Sidebar */
+.dropdown-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.dropdown-btn img {
+    width: 35px;
+}
+
 .sidebar {
     display: none;
     position: absolute;

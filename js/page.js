@@ -8,6 +8,7 @@ function show_landing_page() {
 function show_viz() {
 	$(".viz-page").removeClass("hidden");
 	$(".landing-page").slideUp("slow");
+
 }
 
 function show_help() {

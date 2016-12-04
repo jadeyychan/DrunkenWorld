@@ -232,12 +232,12 @@ function init_map() {
 
                 if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
                     $('.sidebar').slideDown();
-                    $('.main-container').animate({'margin-left': '0'}, 500);
+                    $('.viz-page').animate({'margin-left': '0'}, 500);
                 }
 
                 if ($('.sidebar_item').length == 0) {
                     $('.sidebar').slideUp();
-                    $('.main-container').animate({'margin-left': '7.5%'}, 500);
+                    $('.viz-page').animate({'margin-left': '7.5%'}, 500);
                 }
             });
 

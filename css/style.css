@@ -11,7 +11,7 @@ body {
 }
 
 .map-container {
-  margin-top: 30px;
+  margin-top: 46px;
 }
 
 .hidden {
@@ -38,7 +38,6 @@ body {
   background-color: white;
   width: calc(100%-8px);
   height: 99vh; /* TODO: Fix height properly */
-  border: #1F5673 4px solid;
 }
 
 .info-title {
@@ -98,7 +97,7 @@ div.tooltip {
     margin: auto;
     /*margin-top: -3px;*/
     width: 850px;
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .slider-button {

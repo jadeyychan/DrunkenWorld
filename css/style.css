@@ -1,9 +1,41 @@
 body {
-    font-family: "Georgia", serif;
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    overflow-y: hidden;
 }
 
-.main-container {
-    width: 80%;
+.viz-page {
+    width: 85%;
+    background-color: white;
+    margin: auto;
+}
+
+.map-container {
+
+}
+
+/* Info button */
+.info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.info img {
+  width: 20px;
+}
+
+/* Info Page */
+.info-page {
+  background-color: white;
+  width: calc(100%-8px);
+  height: 99vh; /* TODO: Fix height properly */
+  border: orange 4px solid;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Map */
@@ -56,18 +88,29 @@ div.tooltip {
 /* slider code */
 .slider-container {
     margin: auto;
+    /*margin-top: -3px;*/
     width: 850px;
+    padding-top: 20px;
 }
 
 .slider-button {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     vertical-align: top;
-    margin-top: 13px;
-    background: url(../img/icons/play-button.png);
-    background-repeat: no-repeat;
-    background-size: 40px 40px;
+    margin-top: 15px;
     border: none;
+}
+
+.slider-button-unpressed {
+  background: url(../img/icons/play-button-unpressed.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+}
+
+.slider-button-pressed {
+  background: url(../img/icons/play-button-pressed.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
 }
 
 .d3slider {
@@ -80,19 +123,17 @@ div.tooltip {
 
 .d3slider-rect-range {
     fill: #C3C0C4;
-    /*fill: #777;*/
     stroke: none;
 }
 
 .d3slider-rect-value {
     fill: #1F5673;
-    /*fill: #006EE3;*/
     stroke: none;
 }
 
 .d3slider-axis {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     cursor: pointer;
 }
 
@@ -110,7 +151,8 @@ div.tooltip {
 }
 
 .d3slider text {
-    font: 10px sans-serif;
+    font-family: Lato;
+    font-size: 10px;
 }
 
 .tick.minor text {
@@ -138,11 +180,12 @@ div.tooltip {
 
 .dragger-outer {
   fill: #fff;
-  stroke: #000;
+  stroke: #696969;
+  stroke-width: 2;
 }
 
 .dragger-inner {
-  fill: #B30424;
+  fill: transparent;
   stroke: none;
 }
 
@@ -160,8 +203,8 @@ div.tooltip {
 /* Filter*/
 .filter {
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 35%;
+  left: 5px;
 }
 
 .check {
@@ -176,21 +219,106 @@ div.tooltip {
   cursor: pointer;
 }
 
+.icon:hover {
+    background: rgba(150, 150, 150, 0.6);
+}
+
 .icon-enabled {
   background: #1F5673;
 }
 
 /* Sidebar */
 .sidebar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 18%;
-  border: solid 1px gray;
+    display: none;
+    position: absolute;
+    background: white;
+    top: 0;
+    right: 0;
+    height: 99.7vh;
+    width: 250px;
+    border: solid 1px gray;
+    overflow-x: hidden;
 }
 
 .sidebar_item {
-  background-color: gray;
   margin: 2px 0px 2px 0px;
+  cursor: pointer;
 }
+
+.sidebar_item p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.sidebar .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.sidebar_clear {
+    width: 100px;
+    outline: none;
+    padding: 4px 0px 4px 0px;
+    border: solid orange 2px;
+    border-radius: 25px;
+    background-color: orange;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+.sidebar_clear:hover {
+  background-color: transparent;
+  color: orange;
+}
+
+/* Landing Page */
+.landing-page{
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  /*background-color: #f2f2f2;*/
+  background: linear-gradient(to bottom right, white, #d9d9d9); /* Standard syntax */
+  position: absolute;
+  z-index: 5;
+}
+
+.landing-line {
+  margin-left: 15%;
+  border-left: solid orange 5px;
+}
+
+.landing-container {
+  margin-left: 5%;
+}
+
+.title {
+  font-size: 60px;
+  margin-top: 15%;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+.lp-button {
+  width: 200px;
+  outline: none;
+  margin-top: 5%;
+  padding: 8px 0px 8px 0px;
+  border: solid orange 2px;
+  border-radius: 25px;
+  background-color: orange;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.lp-button:hover {
+  background-color: transparent;
+  color: orange;
+}
+

@@ -92,6 +92,7 @@ function disable_tooltip() {
 /************************/
 /* initialize variables */
 /************************/
+
 var width  = $(window).width() * 0.8,
     height = width / 2.073164161;
 
@@ -129,86 +130,125 @@ var projection = d3.geo.equirectangular()
 var path = d3.geo.path()
     .projection(projection);
 
-alc_types = ["Wine", "Beer", "Spirits"];
+init_year  = 1990;
+colorScale = null;
 
-$('.check').on("change", function() {
-    var check = $(this).attr('checked', this.checked);
-    var id = this.value;
-    if (check[0].checked) {    
-        alc_types.push(this.value);
-        var spirits_div = $("#"+id);
-        $("#"+id).addClass("icon-enabled");
-    }
-    else {
-        var index = alc_types.indexOf(this.value);
-        alc_types.splice(index, 1);
-        
-        $("#"+id).removeClass("icon-enabled");
-    }
-    console.log(alc_types);
-    year = String(self.slider.value());
-    svg.selectAll(".country")
-            .style("fill", function(d) { return set_country_color(d, year); })
-            .on("mouseover", function(d) { set_tooltip(d, year); })                 
-            .on("mouseout", function(d)  { disable_tooltip(); });
-});
+function init_map() {
+    width  = $(window).width() * 0.85,
+    height = width / 2.073164161;
 
-init_year = 1990;
+    colorScale = d3.scale.pow().exponent(.3)
+        .domain([0, 30])
+        .range(["white", "#920099"]);
 
-/*****************/
-/* build the map */
-/*****************/
+    var projection = d3.geo.equirectangular()
+        .translate([width / 2, height / 2])
+        .scale(width / 2 / Math.PI);
 
-// zoom code
-var zoom = d3.behavior.zoom()
-    .scaleExtent([1, 8])
-    .on("zoom", zoomed);
+    var path = d3.geo.path()
+        .projection(projection);
 
-svg = d3.select(".main-container").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .call(zoom);
+    alc_types = ["Wine", "Beer", "Spirits"];
 
-svg.append("defs").append("path")
-    .datum({type: "Sphere"})
-    .attr("id", "sphere")
-    .attr("d", path);
+    $('.check').on("change", function() {
+        var check = $(this).attr('checked', this.checked);
+        var id = this.value;
+        if (check[0].checked) {    
+            alc_types.push(this.value);
+            var spirits_div = $("#"+id);
+            $("#"+id).addClass("icon-enabled");
+        }
+        else {
+            var index = alc_types.indexOf(this.value);
+            alc_types.splice(index, 1);
+            
+            $("#"+id).removeClass("icon-enabled");
+        }
+        year = String(self.slider.value());
+        svg.selectAll(".country")
+                .style("fill", function(d) { return set_country_color(d, year); })
+                .on("mouseover", function(d) { set_tooltip(d, year); })                 
+                .on("mouseout", function(d)  { disable_tooltip(); });
 
-svg.append("use")
-    .attr("class", "fill")
-    .attr("xlink:href", "#sphere");
+        update_sidebar();
+    });
 
-// Define the div for the tooltip
-var tooltip = d3.select(".main-container").append("div")   
-    .attr("class", "tooltip")               
-    .style("opacity", 0);
+    /*****************/
+    /* build the map */
+    /*****************/
 
-var g = svg.append("g")
-           .attr("id", "map");
+    // zoom code
+    zoom = d3.behavior.zoom()
+        .scaleExtent([1, 8])
+        .on("zoom", zoomed);
 
-d3.json("data/map/world-110m.json", function(error, world) {
-    if (error) throw error;
+    svg = d3.select(".map-container").append("svg")
+        .attr("id", "svg-map")
+        .attr("width", width)
+        .attr("height", height)
+        .call(zoom);
 
-    var countries = topojson.feature(world, world.objects.countries).features,
-        neighbors = topojson.neighbors(world.objects.countries.geometries);
-
-    g.selectAll(".country")
-        .data(countries)
-        .enter().insert("path", ".graticule")
-        .attr("class", "country")
-        .attr("d", path)
-        .style("fill", function(d)   { return set_country_color(d, init_year); })
-        .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
-        .on("mouseout", function(d)  { disable_tooltip(); })
-        .on("click", function(d)     { sidebar(d, init_year); });
-
-    g.insert("path", ".graticule")
-        .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-        .attr("class", "boundary")
+    svg.append("defs").append("path")
+        .datum({type: "Sphere"})
+        .attr("id", "sphere")
         .attr("d", path);
-});
 
-d3.select(self.frameElement).style("height", height + "px");
+    svg.append("use")
+        .attr("class", "fill")
+        .attr("xlink:href", "#sphere");
+
+    // Define the div for the tooltip
+    tooltip = d3.select(".map-container").append("div")   
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+
+    g = svg.append("g")
+               .attr("id", "map");
+
+    d3.json("data/map/world-110m.json", function(error, world) {
+        if (error) throw error;
+
+        var countries = topojson.feature(world, world.objects.countries).features,
+            neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+        g.selectAll(".country")
+            .data(countries)
+            .enter().insert("path", ".graticule")
+            .attr("class", "country")
+            .attr("id", function(d) { return 'c' + d.id})
+            .attr("d", path)
+            .style("fill", function(d)   { return set_country_color(d, init_year); })
+            .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
+            .on("mouseout", function(d)  { disable_tooltip(); })
+            .on("click", function(d)     {
+                if ($('.sidebar_item#side' + d.id).length == 0) {
+                    sidebar(d, init_year); 
+                    d3.select(this).style("stroke", "orange")
+                                   .style("stroke-width", 2);
+                } else {
+                    $("#side"+d.id).remove();
+                    d3.select('.country#c' + d.id).style("stroke", "none");
+                }
+
+                if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
+                    $('.sidebar').slideDown();
+                    $('.main-container').animate({'margin-left': '0'}, 500);
+                }
+
+                if ($('.sidebar_item').length == 0) {
+                    $('.sidebar').slideUp();
+                    $('.main-container').animate({'margin-left': '7.5%'}, 500);
+                }
+            });
+
+        g.insert("path", ".graticule")
+            .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+            .attr("class", "boundary")
+            .attr("d", path);
+    });
+
+    d3.select(self.frameElement).style("height", height + "px");
+}
 
 function zoomed() {
     var t = d3.event.translate,

@@ -237,11 +237,17 @@ function init_map() {
                 }
 
                 if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
+                    $('#sidebar_instruction').css('display','none');
                     $('.sidebar').slideDown();
                     $('.viz-page').animate({'margin-left': '0'}, 500);
                 }
 
+                if ($('.sidebar_item').length > 0 && $('#sidebar_instruction').css('display') != 'none') {
+                    $('#sidebar_instruction').css('display', 'none');
+                }
+
                 if ($('.sidebar_item').length == 0) {
+                    $('#sidebar_instruction').css('display','inherit')
                     $('.sidebar').slideUp();
                     $('.viz-page').animate({'margin-left': '7.5%'}, 500);
                 }

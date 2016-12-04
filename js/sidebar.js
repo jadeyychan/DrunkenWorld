@@ -163,6 +163,7 @@ function sidebar_remove(d) {
 
         if ($(".sidebar_item").length == 0) {
             $('.sidebar').slideUp();
+            $('#sidebar_instruction').css('display', 'inherit');
             $('.viz-page').animate({'margin-left': '7.5%'}, 500);
         }
 	});
@@ -175,4 +176,5 @@ function sidebar_clear() {
         d3.select('.country#c' + cid).style("stroke", "none");
         $(items[i]).remove();
     }
+    $('#sidebar_instruction').css('display','inherit')
 }

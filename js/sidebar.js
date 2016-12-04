@@ -88,6 +88,23 @@ function sidebar_append(d, year) {
             .attr("d", line)
             .attr("transform", "translate(39,0)")
             .style("stroke", "orange");
+
+        console.log('testing...', alc_types.sort());
+        if (alc_types == "Beer") {
+            console.log('1')
+        } else if (alc_types == "Wine") {
+            console.log('2')
+        } else if (alc_types == "Spirits") {
+            console.log('3')
+        } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") == -1) {
+            console.log('4')
+        } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 && alc_types.indexOf("Beer") != -1) {
+            console.log('5')
+        } else if (alc_types.indexOf("Wine") == -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") != -1) {
+            console.log('6')
+        } else {
+            console.log('7')
+        }
     };
 }
 

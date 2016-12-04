@@ -244,7 +244,8 @@ function init_map() {
         g.insert("path", ".graticule")
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
             .attr("class", "boundary")
-            .attr("d", path);
+            .attr("d", path)
+            .style("stroke", "none");
     });
 
     d3.select(self.frameElement).style("height", height + "px");

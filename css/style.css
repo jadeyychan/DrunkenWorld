@@ -20,8 +20,6 @@ body {
 
 /* Toolbar */
 .toolbar {
-  font-size: 20px;
-  font-style: italic;
   padding: 8px 0px 0px 30px;
   color: #1F5673;
   position: fixed;
@@ -30,15 +28,41 @@ body {
   cursor: pointer;
 }
 
+.toolbar-AA {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 30px;
+  height: 30px;
+
+  background: url(../img/logo/AA_logo.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+}
+
+.toolbar-words {
+  display: inline;
+  float: right;
+  padding-top: 2px;
+  font-size: 20px;
+  font-style: italic;
+}
+
 .toolbar:hover {
   color: gray;
+}
+
+.toolbar-AA:hover, .toolbar:hover .toolbar-AA {
+  background: url(../img/logo/AA_logo_gray.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
 }
 
 /* Info Page */
 .info-page {
   background-color: white;
   width: calc(100%-8px);
-  height: 99vh; /* TODO: Fix height properly */
+  height: 100vh;
 }
 
 .info-title {
@@ -335,14 +359,13 @@ div.tooltip {
   z-index: 5;
 }
 
-/*.landing-line {
+.landing-line {
   margin-left: 15%;
   border-left: solid #1F5673 5px;
 }
-*/
+
 .landing-container {
-  /*margin-left: 5%;*/
-  margin-left: 15%;
+  margin-left: 5%;
 }
 
 .landing-paragraph {

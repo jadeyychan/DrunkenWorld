@@ -176,6 +176,6 @@ function sidebar_clear() {
 }
 
 $('.dropdown-btn').click(function() {
-    $('.sidebar').slideDown();
+    $(".sidebar").toggle("slide");
     $('.viz-page').animate({'margin-left': '0'}, 500);
 });

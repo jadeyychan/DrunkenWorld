@@ -237,7 +237,7 @@ function init_map() {
 
                 if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
                     $('#sidebar_instruction').css('display','none');
-                    $('.sidebar').slideDown();
+                    $(".sidebar").toggle("slide");
                     $('.viz-page').animate({'margin-left': '0'}, 500);
                 }
 

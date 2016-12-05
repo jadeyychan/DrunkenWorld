@@ -54,7 +54,7 @@
     <!-- Visualization Page  -->
     <div class="viz-page hidden">
         <div class="dropdown-btn">
-            <img src='img/icons/down_arrow.png' />
+            <img src='img/icons/left_arrow.png' />
         </div>
 
         <div class="toolbar" onclick="show_landing_page()">
@@ -92,10 +92,14 @@
 
     <div class="sidebar">
         <div style='margin: auto; width: 205px; margin-bottom: 10px; margin-top: 5px;'>
-            <button class="sidebar_btn" onclick="sidebar_clear()">Clear All</button>
-            <button class="sidebar_btn" onclick="$('.sidebar').slideUp(); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">Hide</button>
+<!--             <button class="sidebar_btn" onclick="sidebar_clear()">Clear All</button>
+            <button class="sidebar_btn" onclick="$('.sidebar').slideUp(); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">Hide</button> -->
+            <div class="sidebar_btn" onclick="sidebar_clear()">Clear All</div>
+            <div class="sidebar_up_btn" onclick="$('.sidebar').toggle('slide'); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">
+                <img src='img/icons/right_arrow.png' />
+            </div>
         </div>
-        <p id='sidebar_instruction' style='text-align: center;'>Click a country to explore more!</p>
+        <p id='sidebar_instruction'>Click on a country to explore more!</p>
     </div>
 
     <script src="js/sidebar.js"></script>

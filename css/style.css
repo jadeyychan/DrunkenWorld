@@ -263,18 +263,20 @@ div.tooltip {
     right: 0;
     height: 99.7vh;
     width: 250px;
-    border: solid 1px gray;
+    border: solid 1.5px #A9A9A9;
     overflow-x: hidden;
 }
 
 .sidebar_item {
-  margin: 2px 0px 2px 0px;
   cursor: pointer;
+  border-top: solid 1px #A9A9A9;
+  border-bottom: solid 1px #A9A9A9;
+  margin-top: -1px;
 }
 
 .sidebar_item p {
     margin: 0;
-    padding: 0;
+    padding-top: 10px;
     text-align: center;
     margin-bottom: 3px;
     font-size: 14px;
@@ -289,14 +291,15 @@ div.tooltip {
 .sidebar_btn {
     width: 100px;
     outline: none;
-    padding: 4px 0px 4px 0px;
+    padding: 6px 0px 4px 0px;
     border: solid #1F5673 2px;
     border-radius: 25px;
     background-color: #1F5673;
     color: white;
     font-size: 12px;
     cursor: pointer;
-
+    text-align: center;
+    margin-top: 8px;
 }
 
 .sidebar_btn:hover {
@@ -304,24 +307,42 @@ div.tooltip {
   color: #1F5673;
 }
 
+.sidebar_up_btn {
+  float: right;
+  cursor: pointer;
+}
+
+.sidebar_up_btn img {
+    width: 25px;  
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#sidebar_instruction {
+  color: gray;
+  font-style: italic;
+  text-align: center;
+}
+
 /* Landing Page */
 .landing-page{
   margin: 0;
   width: 100%;
   height: 100vh;
-  /*background-color: #f2f2f2;*/
-  background: linear-gradient(to bottom right, white, #d9d9d9); /* Standard syntax */
+  background: linear-gradient(to bottom right, white, #d9d9d9);
   position: absolute;
   z-index: 5;
 }
 
-.landing-line {
+/*.landing-line {
   margin-left: 15%;
   border-left: solid #1F5673 5px;
 }
-
+*/
 .landing-container {
-  margin-left: 5%;
+  /*margin-left: 5%;*/
+  margin-left: 15%;
 }
 
 .landing-paragraph {

@@ -76,7 +76,7 @@ body {
   background-color: gray;
   width: 40%;
   height: 50%;
-  margin: auto;
+  margin: 0 auto;
 }
 
 /* Map */
@@ -235,7 +235,7 @@ div.tooltip {
 /* Filter*/
 .filter {
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 5px;
 }
 

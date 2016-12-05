@@ -35,7 +35,7 @@ body {
   width: 30px;
   height: 30px;
 
-  background: url(../img/logo/AA_logo.png);
+  background: url(../img/logo/AA_logo_small.png);
   background-repeat: no-repeat;
   background-size: 30px 30px;
 }
@@ -53,7 +53,7 @@ body {
 }
 
 .toolbar-AA:hover, .toolbar:hover .toolbar-AA {
-  background: url(../img/logo/AA_logo_gray.png);
+  background: url(../img/logo/AA_logo_gray_small.png);
   background-repeat: no-repeat;
   background-size: 30px 30px;
 }

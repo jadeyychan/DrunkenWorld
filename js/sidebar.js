@@ -31,7 +31,7 @@ function sidebar_append(d, year) {
 
         var linesvg = d3.select("#side" + d.id).append("svg")
             .attr("width", linewidth + 50)
-            .attr("height", lineheight + 50);
+            .attr("height", lineheight + 25);
 
         var lineg = linesvg.append("g");
 

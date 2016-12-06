@@ -39,7 +39,7 @@ function sidebar_append(d, year) {
     if(!$("#side"+d.id).length) { // country is not already selected
     	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>"+
                                 "<p class='sidebar_x'></p>"+
-                                "<p class='sidebar_country'>" + country + "</p>"+
+                                "<p class='sidebar_country'>" + country_ids[d.id] + "</p>"+
                                 "</div>");
 
         var linewidth  = 190;
@@ -110,10 +110,10 @@ function sidebar_append(d, year) {
             lc = colorScale_BS(20)
         }
 
-        var da = pull_annual_data(country);
-        var dw = pull_annual_data_2(country, "Wine");
-        var db = pull_annual_data_2(country, "Beer");
-        var ds = pull_annual_data_2(country, "Spirits");
+        var da = pull_annual_data(country_ids[d.id]);
+        var dw = pull_annual_data_2(country_ids[d.id], "Wine");
+        var db = pull_annual_data_2(country_ids[d.id], "Beer");
+        var ds = pull_annual_data_2(country_ids[d.id], "Spirits");
 
         linesvg.append("path")
             .datum(dw)
@@ -181,11 +181,16 @@ function sidebar_append(d, year) {
                     .style("stroke-width", "1.5px");
             } else {
                 linesvg.select(".line#wine").transition(500)
-                    .attr("d", line(dw));
+                    .attr("d", line(dw))
+                    .style("stroke-width", (alc_types.indexOf("Wine") != -1 ? "1.5px" : "0px"));
+
                 linesvg.select(".line#beer").transition(500)
-                    .attr("d", line(db));
+                    .attr("d", line(db))
+                    .style("stroke-width", (alc_types.indexOf("Beer") != -1 ? "1.5px" : "0px"));
+
                 linesvg.select(".line#spirits").transition(500)
                     .attr("d", line(ds))
+                    .style("stroke-width", (alc_types.indexOf("Spirits") != -1 ? "1.5px" : "0px"));
 
                 linesvg.select(".line#all").transition()
                     .style("stroke-width", "0px");
@@ -216,10 +221,10 @@ function update_data(id) {
 
     var linesvg = d3.select("#side" + id + " svg");
 
-    var da = pull_annual_data(country);
-    var dw = pull_annual_data_2(country, "Wine");
-    var db = pull_annual_data_2(country, "Beer");
-    var ds = pull_annual_data_2(country, "Spirits");
+    var da = pull_annual_data(country_ids[id]);
+    var dw = pull_annual_data_2(country_ids[id], "Wine");
+    var db = pull_annual_data_2(country_ids[id], "Beer");
+    var ds = pull_annual_data_2(country_ids[id], "Spirits");
 
     linesvg.select(".line#all").attr("d", line(da));
 

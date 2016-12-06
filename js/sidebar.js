@@ -52,12 +52,12 @@ function sidebar_append(d, year) {
         var lineg = linesvg.append("g");
 
         var x = d3.scale.linear().range([0, linewidth]);
-        var y = d3.scale.pow().exponent(.5).range([lineheight, 0]);
+        var y = d3.scale.pow().exponent(.4).range([lineheight, 0]);
         var line = d3.svg.line().x(function(d) { return x(d.year);  })
                                 .y(function(d) { return y(d.value); });
 
         x.domain([min_year, max_year]);
-        y.domain([0, 35]);
+        y.domain([0, 25]);
 
         var xAxis = d3.svg.axis()
             .scale(x)
@@ -69,7 +69,7 @@ function sidebar_append(d, year) {
 
         var yAxis = d3.svg.axis()
             .scale(y)
-            .tickValues([1,5,12,20,30])
+            .tickValues([1,4,10,20])
             .innerTickSize(1)
             .outerTickSize(1)
             .orient("left");
@@ -160,12 +160,12 @@ function update_data(id) {
     var lineheight = 120;
 
     var x = d3.scale.linear().range([0, linewidth]);
-    var y = d3.scale.pow().exponent(.5).range([lineheight, 0]);
+    var y = d3.scale.pow().exponent(.4).range([lineheight, 0]);
     var line = d3.svg.line().x(function(d) { return x(d.year);  })
                             .y(function(d) { return y(d.value); });
 
     x.domain([min_year, max_year]);
-    y.domain([0, 35]);
+    y.domain([0, 25]);
 
 
     var lc = colorScale_All(20);

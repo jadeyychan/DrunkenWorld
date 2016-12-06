@@ -11,7 +11,7 @@ body {
 }
 
 .map-container {
-    padding-top: 56px;
+    padding-top: 53px;
 }
 
 #svg-map {
@@ -50,7 +50,8 @@ body {
     float: right;
     padding-top: 2px;
     font-size: 20px;
-    font-style: italic;
+    font-style: italic;   
+    padding-left: 20px
 }
 
 .toolbar:hover {

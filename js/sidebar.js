@@ -57,7 +57,7 @@ function sidebar_append(d, year) {
                                 .y(function(d) { return y(d.value); });
 
         x.domain([min_year, max_year]);
-        y.domain([0, 25]);
+        y.domain([0, 30]);
 
         var xAxis = d3.svg.axis()
             .scale(x)
@@ -161,6 +161,9 @@ function sidebar_append(d, year) {
         }
 
         linesvg.on("click", function() {
+            var country = country_ids[d.id];
+            var linesvg = d3.select("#side" + d.id + " svg");
+
             var da = pull_annual_data(country);
             var dw = pull_annual_data_2(country, "Wine");
             var db = pull_annual_data_2(country, "Beer");
@@ -209,7 +212,7 @@ function update_data(id) {
                             .y(function(d) { return y(d.value); });
 
     x.domain([min_year, max_year]);
-    y.domain([0, 25]);
+    y.domain([0, 30]);
 
     var linesvg = d3.select("#side" + id + " svg");
 

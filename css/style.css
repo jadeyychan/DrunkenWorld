@@ -296,7 +296,6 @@ div.tooltip {
 }
 
 .sidebar_item {
-    cursor: pointer;
     border-top: solid 1px #A9A9A9;
     border-bottom: solid 1px #A9A9A9;
     margin-top: -1px;
@@ -313,6 +312,11 @@ div.tooltip {
     background-position: center; 
     background-size: 10px 10px;
     z-index: 100;
+    cursor: pointer;
+}
+
+.sidebar_item svg {
+    cursor: pointer;
 }
 
 .sidebar_item:hover {

@@ -11,7 +11,12 @@ body {
 }
 
 .map-container {
-    padding-top: 46px;
+    padding-top: 56px;
+}
+
+#svg-map {
+    border: solid 1px #a9a9a9;
+    box-shadow: 8px 8px 20px #a9a9a9;
 }
 
 .hidden {
@@ -123,13 +128,11 @@ div.tooltip {
   padding-bottom: 4px;
 }
 
-
 /* slider code */
 .slider-container {
     margin: auto;
-    /*margin-top: -3px;*/
     width: 850px;
-    padding-top: 5px;
+    padding-top: 12px;
 }
 
 .slider-button {
@@ -281,7 +284,7 @@ div.tooltip {
 /* Sidebar */
 .dropdown-btn {
     position: absolute;
-    top: 10px;
+    top: 14px;
     right: 10px;
     cursor: pointer;
 }
@@ -303,7 +306,6 @@ div.tooltip {
 }
 
 .sidebar_item {
-    cursor: pointer;
     border-top: solid 1px #A9A9A9;
     border-bottom: solid 1px #A9A9A9;
     margin-top: -1px;
@@ -320,6 +322,11 @@ div.tooltip {
     background-position: center; 
     background-size: 10px 10px;
     z-index: 100;
+    cursor: pointer;
+}
+
+.sidebar_item svg {
+    cursor: pointer;
 }
 
 .sidebar_item:hover {
@@ -359,7 +366,7 @@ div.tooltip {
     font-size: 12px;
     cursor: pointer;
     text-align: center;
-    margin-top: 8px;
+    margin-top: 13px;
 }
 
 .sidebar_btn:hover {
@@ -375,7 +382,7 @@ div.tooltip {
 .sidebar_up_btn img {
     width: 25px;  
     position: absolute;
-    top: 10px;
+    top: 14px;
     right: 10px;
 }
 

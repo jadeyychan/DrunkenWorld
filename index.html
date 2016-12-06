@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Anonymous Alcoholics | COMP-177</title>
+    <title>A Drunken World | COMP-177</title>
 
     <!-- importing jQuery, d3 v3, toposon.js, and slider lib -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -22,6 +22,11 @@
     <!-- Google Fonts: Montserrat, Lato -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:700" rel="stylesheet">
 
+    <!-- Jbox -->
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//code.jboxcdn.com/0.4.7/jBox.min.js"></script>
+    <link href="//code.jboxcdn.com/0.4.7/jBox.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -30,8 +35,8 @@
         <div class="landing-line animated fadeInUp">
             <div class="landing-container">
                 <div class="title">
-                    ANONYMOUS <br>
-                    ALCOHOLICS
+                    A DRUNKEN <br>
+                    WORLD
                 </div>
                 <p class="landing-paragraph">
                 Visualizing how alcoholic our world truly is. 
@@ -45,7 +50,7 @@
     <!-- Help Page  -->
     <div class="info-page hidden">
         <div class="toolbar" onclick="show_landing_page()">
-            <div class="toolbar-words"> Anonymous Alcoholics </div>
+            <div class="toolbar-words"> A Drunken World </div>
             <div class="toolbar-AA"></div>
         </div>
         <div class="info-title">
@@ -62,7 +67,7 @@
         </div>
 
         <div class="toolbar" onclick="show_landing_page()">
-            <div class="toolbar-words"> Anonymous Alcoholics </div>
+            <div class="toolbar-words"> A Drunken World </div>
             <div class="toolbar-AA"></div>
         </div>
         
@@ -95,7 +100,7 @@
         <script src="js/slider.js"></script>
 
         <div class="sidebar">
-            <div style='margin: auto; width: 105px; margin-bottom: 10px; margin-top: 5px;'>
+            <div style='margin: auto; width: 105px; margin-bottom: 14px;'>
                 <div class="sidebar_btn" onclick="sidebar_clear()">Clear All</div>
                 <div class="sidebar_up_btn" onclick="$('.sidebar').toggle('slide'); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">
                     <img src='img/icons/right_arrow.png' />

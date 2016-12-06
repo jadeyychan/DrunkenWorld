@@ -11,7 +11,12 @@ body {
 }
 
 .map-container {
-    padding-top: 46px;
+    padding-top: 56px;
+}
+
+#svg-map {
+    border: solid 1px #a9a9a9;
+    box-shadow: 8px 8px 20px #a9a9a9;
 }
 
 .hidden {
@@ -105,24 +110,29 @@ div.tooltip {
     position: absolute;         
     text-align: center;         
     width: auto;                    
-    height: 28px;                   
+    height: 32px;                   
     padding: 6px;      
     color: white;      
     font: 12px sans-serif;      
     background: #1F5673; 
     border: 0px;        
     border-radius: 8px;         
-    pointer-events: none;   
+    pointer-events: none;
     /*box-shadow: 2px 2px 4px #CCC; */
 }
 
+.tooltip-firstline {
+  font-weight: bold;
+  font-size: 13px;
+  display: inline-block;
+  padding-bottom: 4px;
+}
 
 /* slider code */
 .slider-container {
     margin: auto;
-    /*margin-top: -3px;*/
     width: 850px;
-    padding-top: 5px;
+    padding-top: 12px;
 }
 
 .slider-button {
@@ -274,7 +284,7 @@ div.tooltip {
 /* Sidebar */
 .dropdown-btn {
     position: absolute;
-    top: 10px;
+    top: 14px;
     right: 10px;
     cursor: pointer;
 }
@@ -356,7 +366,7 @@ div.tooltip {
     font-size: 12px;
     cursor: pointer;
     text-align: center;
-    margin-top: 8px;
+    margin-top: 13px;
 }
 
 .sidebar_btn:hover {
@@ -372,7 +382,7 @@ div.tooltip {
 .sidebar_up_btn img {
     width: 25px;  
     position: absolute;
-    top: 10px;
+    top: 14px;
     right: 10px;
 }
 
@@ -412,6 +422,7 @@ div.tooltip {
     margin-top: 15%;
     font-family: 'Montserrat', sans-serif;
     color: black;
+    line-height: 1;
 }
 
 .lp-button {

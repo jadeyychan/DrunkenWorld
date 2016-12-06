@@ -229,21 +229,21 @@ function update_data(id) {
     linesvg.select(".line#all").attr("d", line(da));
 
     if (alc_types.indexOf("Wine") != -1 && linesvg.select(".line#all").style("stroke-width") == "0px") {
-        linesvg.select(".line#wine").style("stroke-width", "1.5px");
+        linesvg.select(".line#wine").transition(500).style("stroke-width", "1.5px");
     } else {
-        linesvg.select(".line#wine").style("stroke-width", 0);
+        linesvg.select(".line#wine").transition(500).style("stroke-width", 0);
     }
 
     if (alc_types.indexOf("Beer") != -1 && linesvg.select(".line#all").style("stroke-width") == "0px") {
-        linesvg.select(".line#beer").style("stroke-width", "1.5px");
+        linesvg.select(".line#beer").transition(500).style("stroke-width", "1.5px");
     } else {
-        linesvg.select(".line#beer").style("stroke-width", 0);
+        linesvg.select(".line#beer").transition(500).style("stroke-width", 0);
     }
 
     if (alc_types.indexOf("Spirits") != -1 && linesvg.select(".line#all").style("stroke-width") == "0px") {
-        linesvg.select(".line#spirits").style("stroke-width", "1.5px");
+        linesvg.select(".line#spirits").transition(500).style("stroke-width", "1.5px");
     } else {
-        linesvg.select(".line#spirits").style("stroke-width", 0);
+        linesvg.select(".line#spirits").transition(500).style("stroke-width", 0);
     }
 }
 

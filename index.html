@@ -93,19 +93,18 @@
             <div class="slider"></div>
         </div>
         <script src="js/slider.js"></script>
-    </div>
 
-    <div class="sidebar">
-        <div style='margin: auto; width: 105px; margin-bottom: 10px; margin-top: 5px;'>
-            <div class="sidebar_btn" onclick="sidebar_clear()">Clear All</div>
-            <div class="sidebar_up_btn" onclick="$('.sidebar').toggle('slide'); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">
-                <img src='img/icons/right_arrow.png' />
+        <div class="sidebar">
+            <div style='margin: auto; width: 105px; margin-bottom: 10px; margin-top: 5px;'>
+                <div class="sidebar_btn" onclick="sidebar_clear()">Clear All</div>
+                <div class="sidebar_up_btn" onclick="$('.sidebar').toggle('slide'); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">
+                    <img src='img/icons/right_arrow.png' />
+                </div>
             </div>
+            <p id='sidebar_instruction'>Click on a country to explore more!</p>
         </div>
-        <p id='sidebar_instruction'>Click on a country to explore more!</p>
+        <script src="js/sidebar.js"></script>
     </div>
-
-    <script src="js/sidebar.js"></script>
 
 
 </body>

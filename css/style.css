@@ -300,7 +300,7 @@ div.tooltip {
 
 .sidebar_x {
     position: absolute;
-    margin: 8px 2px 0px 230px;
+    margin: 10px 2px 0px 230px;
     width: 10px;
     height: 10px;
     background: url(../img/icons/close.png);
@@ -313,10 +313,6 @@ div.tooltip {
 }
 
 .sidebar_item:hover .sidebar_x {
-    position: absolute;
-    margin: 8px 2px 0px 230px;
-    width: 10px;
-    height: 10px;
     background: url(../img/icons/close-blue.png);
     background-repeat: no-repeat;
     background-size: 10px 10px;
@@ -324,7 +320,7 @@ div.tooltip {
 
 .sidebar_country {
     margin: 0;
-    padding-top: 15px;
+    padding-top: 6px;
     text-align: center;
     margin-bottom: 3px;
     font-size: 14px;

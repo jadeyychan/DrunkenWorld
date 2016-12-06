@@ -16,6 +16,19 @@ function pull_annual_data(country) {
     return annual_data;
 }
 
+function pull_annual_data_2(country, alc_type) {
+    var annual_data = [ ];
+    for (var year = min_year; year < max_year; year++) {
+        var year_data = 0;
+        if (consumption[country] && consumption[country][alc_type][String(year)]) {
+            year_data += parseFloat(consumption[country][alc_type][String(year)]);
+        }
+
+        if (year_data > 0) annual_data.push({"year": year, "value": year_data});
+    }
+    return annual_data;
+}
+
 function sidebar(d, year) {
     country = country_ids[String(d.id)];
     sidebar_append(d, year);
@@ -42,8 +55,6 @@ function sidebar_append(d, year) {
         var y = d3.scale.pow().exponent(.5).range([lineheight, 0]);
         var line = d3.svg.line().x(function(d) { return x(d.year);  })
                                 .y(function(d) { return y(d.value); });
-
-        var ds = pull_annual_data(country);
 
         x.domain([min_year, max_year]);
         y.domain([0, 35]);
@@ -99,14 +110,40 @@ function sidebar_append(d, year) {
             lc = colorScale_BS(20)
         }
 
-        linesvg.append("path")
-            .datum(ds)
-            .attr("class", "line")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", lc);
+        var dw = pull_annual_data_2(country, "Wine");
+        var db = pull_annual_data_2(country, "Beer");
+        var ds = pull_annual_data_2(country, "Spirits");
 
 
+        if (alc_types.indexOf("Wine") != -1) {
+            linesvg.append("path")
+                .datum(dw)
+                .attr("class", "line")
+                .attr("id", "wine")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", colorScale_Wine(20));
+        }
+
+        if (alc_types.indexOf("Beer") != -1) {
+            linesvg.append("path")
+                .datum(db)
+                .attr("class", "line")
+                .attr("id", "beer")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", colorScale_Beer(20));
+        }
+
+        if (alc_types.indexOf("Spirits") != -1) {
+            linesvg.append("path")
+                .datum(ds)
+                .attr("class", "line")
+                .attr("id", "spirits")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", colorScale_Spirits(20));
+        }
     };
 }
 
@@ -147,11 +184,42 @@ function update_data(id) {
         lc = colorScale_BS(20)
     }
 
-    var nsvg = d3.select("#side" + id + " .line");
-    var ds = pull_annual_data(country_ids[id]);
-    nsvg.transition()
-        .attr("d", line(ds))
-        .style("stroke", lc);
+    d3.selectAll("#side" + id + " .line").remove();
+
+    var linesvg = d3.select("#side" + id + " svg");
+    var dw = pull_annual_data_2(country, "Wine");
+    var db = pull_annual_data_2(country, "Beer");
+    var ds = pull_annual_data_2(country, "Spirits");
+
+    if (alc_types.indexOf("Wine") != -1) {
+        linesvg.append("path")
+            .datum(dw)
+            .attr("class", "line")
+            .attr("id", "wine")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", colorScale_Wine(20));
+    }
+
+    if (alc_types.indexOf("Beer") != -1) {
+        linesvg.append("path")
+            .datum(db)
+            .attr("class", "line")
+            .attr("id", "beer")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", colorScale_Beer(20));
+    }
+
+    if (alc_types.indexOf("Spirits") != -1) {
+        linesvg.append("path")
+            .datum(ds)
+            .attr("class", "line")
+            .attr("id", "spirits")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", colorScale_Spirits(20));
+    }
 }
 
 function sidebar_remove(d) {

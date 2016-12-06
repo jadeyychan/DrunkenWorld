@@ -303,7 +303,7 @@ div.tooltip {
     margin: 8px 2px 0px 230px;
     width: 10px;
     height: 10px;
-    background: url(/img/icons/close.png);
+    background: url(../img/icons/close.png);
     background-repeat: no-repeat;
     background-size: 10px 10px;
 }
@@ -317,7 +317,7 @@ div.tooltip {
     margin: 8px 2px 0px 230px;
     width: 10px;
     height: 10px;
-    background: url(/img/icons/close-blue.png);
+    background: url(../img/icons/close-blue.png);
     background-repeat: no-repeat;
     background-size: 10px 10px;
 }

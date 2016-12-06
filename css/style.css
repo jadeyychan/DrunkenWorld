@@ -33,18 +33,6 @@ body {
     cursor: pointer;
 }
 
-.toolbar-AA {
-    float: left;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    width: 30px;
-    height: 30px;
-
-    background: url(../img/logo/AA_logo_small.png);
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-}
-
 .toolbar-words {
     display: inline;
     float: right;
@@ -56,12 +44,6 @@ body {
 
 .toolbar:hover {
     color: gray;
-}
-
-.toolbar-AA:hover, .toolbar:hover .toolbar-AA {
-    background: url(../img/logo/AA_logo_gray_small.png);
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
 }
 
 /* Info Page */

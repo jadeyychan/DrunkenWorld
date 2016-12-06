@@ -79,7 +79,7 @@ function set_tooltip(d, year) {
         if (pretty_alcs == undefined) {
             pretty_alcs = "N/A";
         }
-        tooltip.html(country + " (" + year + ")" + "<br />" + pretty_alcs + ": " + get_consumption(country, alc_types, year).toFixed(2) + " liters") 
+        tooltip.html("<span class='tooltip-firstline'>" +country + " (" + year + ")" +"</span>"+ "<br />" + pretty_alcs + ": " + get_consumption(country, alc_types, year).toFixed(2) + " liters") 
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     } else {

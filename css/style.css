@@ -14,12 +14,6 @@ body {
     padding-top: 46px;
 }
 
-#svg-map {
-    margin-top: 5px;
-    border: solid #A9A9A9 2px;
-    box-shadow: 10px 10px 5px #888888;
-}
-
 .hidden {
     display: none;
 }

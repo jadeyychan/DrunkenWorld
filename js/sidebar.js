@@ -110,40 +110,84 @@ function sidebar_append(d, year) {
             lc = colorScale_BS(20)
         }
 
+        var da = pull_annual_data(country);
         var dw = pull_annual_data_2(country, "Wine");
         var db = pull_annual_data_2(country, "Beer");
         var ds = pull_annual_data_2(country, "Spirits");
 
+        linesvg.append("path")
+            .datum(dw)
+            .attr("class", "line")
+            .attr("id", "wine")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", colorScale_Wine(20));
 
-        if (alc_types.indexOf("Wine") != -1) {
-            linesvg.append("path")
-                .datum(dw)
-                .attr("class", "line")
-                .attr("id", "wine")
-                .attr("d", line)
-                .attr("transform", "translate(39,0)")
-                .style("stroke", colorScale_Wine(20));
+        linesvg.append("path")
+            .datum(db)
+            .attr("class", "line")
+            .attr("id", "beer")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", colorScale_Beer(20));
+
+        linesvg.append("path")
+            .datum(ds)
+            .attr("class", "line")
+            .attr("id", "spirits")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", colorScale_Spirits(20));
+
+        linesvg.append("path")
+            .datum(da)
+            .attr("class", "line")
+            .attr("id", "all")
+            .attr("d", line)
+            .attr("transform", "translate(39,0)")
+            .style("stroke", "#1F5673")
+            .style("stroke-width", 0);
+
+        if (alc_types.indexOf("Wine") == -1) {
+            linesvg.select(".line#wine").style("stroke-width", 0);
         }
 
-        if (alc_types.indexOf("Beer") != -1) {
-            linesvg.append("path")
-                .datum(db)
-                .attr("class", "line")
-                .attr("id", "beer")
-                .attr("d", line)
-                .attr("transform", "translate(39,0)")
-                .style("stroke", colorScale_Beer(20));
+        if (alc_types.indexOf("Beer") == -1) {
+            linesvg.select(".line#beer").style("stroke-width", 0);
         }
 
-        if (alc_types.indexOf("Spirits") != -1) {
-            linesvg.append("path")
-                .datum(ds)
-                .attr("class", "line")
-                .attr("id", "spirits")
-                .attr("d", line)
-                .attr("transform", "translate(39,0)")
-                .style("stroke", colorScale_Spirits(20));
+        if (alc_types.indexOf("Spirits") == -1) {
+            linesvg.select(".line#spirits").style("stroke-width", 0);
         }
+
+        linesvg.on("click", function() {
+            var da = pull_annual_data(country);
+            var dw = pull_annual_data_2(country, "Wine");
+            var db = pull_annual_data_2(country, "Beer");
+            var ds = pull_annual_data_2(country, "Spirits");
+
+            if (linesvg.select(".line#all").style("stroke-width") == "0px") {
+                linesvg.select(".line#wine").transition(500)
+                    .attr("d", line(da));
+                linesvg.select(".line#beer").transition(500)
+                    .attr("d", line(da));
+                linesvg.select(".line#spirits").transition(500)
+                    .attr("d", line(da))
+
+                linesvg.select(".line#all").transition().delay(500)
+                    .style("stroke-width", "1.5px");
+            } else {
+                linesvg.select(".line#wine").transition(500)
+                    .attr("d", line(dw));
+                linesvg.select(".line#beer").transition(500)
+                    .attr("d", line(db));
+                linesvg.select(".line#spirits").transition(500)
+                    .attr("d", line(ds))
+
+                linesvg.select(".line#all").transition()
+                    .style("stroke-width", "0px");
+            }
+        });
     };
 }
 
@@ -167,64 +211,37 @@ function update_data(id) {
     x.domain([min_year, max_year]);
     y.domain([0, 25]);
 
-
-    var lc = colorScale_All(20);
-
-    if (alc_types == "Beer") {
-        lc = colorScale_Beer(20);
-    } else if (alc_types == "Wine") {
-        lc = colorScale_Wine(20);
-    } else if (alc_types == "Spirits") {
-        lc = colorScale_Spirits(20);
-    } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") == -1) {
-        lc = colorScale_WS(20);
-    } else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 && alc_types.indexOf("Beer") != -1) {
-        lc = colorScale_BW(20);
-    } else if (alc_types.indexOf("Wine") == -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") != -1) {
-        lc = colorScale_BS(20)
-    }
-
-    d3.selectAll("#side" + id + " .line").remove();
-
     var linesvg = d3.select("#side" + id + " svg");
+
+    var da = pull_annual_data(country);
     var dw = pull_annual_data_2(country, "Wine");
     var db = pull_annual_data_2(country, "Beer");
     var ds = pull_annual_data_2(country, "Spirits");
 
-    if (alc_types.indexOf("Wine") != -1) {
-        linesvg.append("path")
-            .datum(dw)
-            .attr("class", "line")
-            .attr("id", "wine")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", colorScale_Wine(20));
+    linesvg.select(".line#all").attr("d", line(da));
+
+    if (alc_types.indexOf("Wine") != -1 && linesvg.select(".line#all").style("stroke-width") == "0px") {
+        linesvg.select(".line#wine").style("stroke-width", "1.5px");
+    } else {
+        linesvg.select(".line#wine").style("stroke-width", 0);
     }
 
-    if (alc_types.indexOf("Beer") != -1) {
-        linesvg.append("path")
-            .datum(db)
-            .attr("class", "line")
-            .attr("id", "beer")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", colorScale_Beer(20));
+    if (alc_types.indexOf("Beer") != -1 && linesvg.select(".line#all").style("stroke-width") == "0px") {
+        linesvg.select(".line#beer").style("stroke-width", "1.5px");
+    } else {
+        linesvg.select(".line#beer").style("stroke-width", 0);
     }
 
-    if (alc_types.indexOf("Spirits") != -1) {
-        linesvg.append("path")
-            .datum(ds)
-            .attr("class", "line")
-            .attr("id", "spirits")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", colorScale_Spirits(20));
+    if (alc_types.indexOf("Spirits") != -1 && linesvg.select(".line#all").style("stroke-width") == "0px") {
+        linesvg.select(".line#spirits").style("stroke-width", "1.5px");
+    } else {
+        linesvg.select(".line#spirits").style("stroke-width", 0);
     }
 }
 
 function sidebar_remove(d) {
     /* Removing sidebar item */
-	$("#side"+d.id).click(function() {
+	$("#side" + d.id + " .sidebar_x").click(function() {
 		$("#side"+d.id).remove();
         d3.select('.country#c' + d.id).style("stroke", "none");
 

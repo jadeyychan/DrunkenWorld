@@ -110,14 +110,22 @@ div.tooltip {
     position: absolute;         
     text-align: center;         
     width: auto;                    
-    height: 28px;                   
+    height: 32px;                   
     padding: 6px;      
     color: white;      
     font: 12px sans-serif;      
     background: #1F5673; 
     border: 0px;        
     border-radius: 8px;         
-    pointer-events: none;   
+    pointer-events: none;
+    /*box-shadow: 2px 2px 4px #CCC; */
+}
+
+.tooltip-firstline {
+  font-weight: bold;
+  font-size: 13px;
+  display: inline-block;
+  padding-bottom: 4px;
 }
 
 /* slider code */

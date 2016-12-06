@@ -14,6 +14,12 @@ body {
     padding-top: 46px;
 }
 
+#svg-map {
+    margin-top: 5px;
+    border: solid #A9A9A9 2px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
 .hidden {
     display: none;
 }
@@ -35,7 +41,7 @@ body {
     width: 30px;
     height: 30px;
 
-    background: url(/img/logo/AA_logo_small.png);
+    background: url(../img/logo/AA_logo_small.png);
     background-repeat: no-repeat;
     background-size: 30px 30px;
 }
@@ -53,7 +59,7 @@ body {
 }
 
 .toolbar-AA:hover, .toolbar:hover .toolbar-AA {
-    background: url(/img/logo/AA_logo_gray_small.png);
+    background: url(../img/logo/AA_logo_gray_small.png);
     background-repeat: no-repeat;
     background-size: 30px 30px;
 }
@@ -134,13 +140,13 @@ div.tooltip {
 }
 
 .slider-button-unpressed {
-    background: url(/img/icons/play-button-unpressed.png);
+    background: url(../img/icons/play-button-unpressed.png);
     background-repeat: no-repeat;
     background-size: 30px 30px;
 }
 
 .slider-button-pressed {
-    background: url(/img/icons/play-button-pressed.png);
+    background: url(../img/icons/play-button-pressed.png);
     background-repeat: no-repeat;
     background-size: 30px 30px;
 }

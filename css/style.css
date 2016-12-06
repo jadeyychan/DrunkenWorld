@@ -414,6 +414,7 @@ div.tooltip {
     margin-top: 15%;
     font-family: 'Montserrat', sans-serif;
     color: black;
+    line-height: 1;
 }
 
 .lp-button {

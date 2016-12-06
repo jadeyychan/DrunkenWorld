@@ -24,7 +24,10 @@ function sidebar(d, year) {
 
 function sidebar_append(d, year) {
     if(!$("#side"+d.id).length) { // country is not already selected
-    	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'><p>" + country + "</p></div>");
+    	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>"+
+                                "<p class='sidebar_x'></p>"+
+                                "<p class='sidebar_country'>" + country + "</p>"+
+                                "</div>");
 
         var linewidth  = 190;
         var lineheight = 120;

@@ -298,12 +298,37 @@ div.tooltip {
   margin-top: -1px;
 }
 
-.sidebar_item p {
+.sidebar_x {
+    position: absolute;
+    margin: 8px 2px 0px 230px;
+    width: 10px;
+    height: 10px;
+    background: url(../img/icons/close.png);
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+}
+
+.sidebar_item:hover {
+  background-color: #f6f6f6;
+}
+
+.sidebar_item:hover .sidebar_x {
+    position: absolute;
+    margin: 8px 2px 0px 230px;
+    width: 10px;
+    height: 10px;
+    background: url(../img/icons/close-blue.png);
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+}
+
+.sidebar_country {
     margin: 0;
-    padding-top: 10px;
+    padding-top: 15px;
     text-align: center;
     margin-bottom: 3px;
     font-size: 14px;
+    position: relative;
 }
 
 .sidebar .line {

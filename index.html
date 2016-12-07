@@ -22,10 +22,9 @@
     <!-- Google Fonts: Montserrat, Lato -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:700" rel="stylesheet">
 
-    <!-- Jbox -->
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="//code.jboxcdn.com/0.4.7/jBox.min.js"></script>
-    <link href="//code.jboxcdn.com/0.4.7/jBox.css" rel="stylesheet">
+    <!-- Search Box Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 </head>
 <body>
@@ -68,6 +67,8 @@
         <div class="toolbar" onclick="show_landing_page()">
             <div class="toolbar-words"> Our Drunken World </div>
         </div>
+
+        <select class="searchbar"></select>
         
         <div class="map-container">
         </div>
@@ -100,7 +101,7 @@
         <div class="sidebar">
             <div style='margin: auto; width: 105px; margin-bottom: 11px;'>
                 <div class="sidebar_btn" onclick="sidebar_clear()">Clear All</div>
-                <div class="sidebar_up_btn" onclick="$('.sidebar').toggle('slide'); $('.viz-page').animate({'margin-left': '7.5%'}, 500);">
+                <div class="sidebar_up_btn" onclick="$('.sidebar').toggle('slide'); $('.viz-page').animate({'margin-left': '7.5%'}, 500); $('.select2-selection').css('width', '200px');">
                     <img src='img/icons/right_arrow.png' />
                 </div>
             </div>

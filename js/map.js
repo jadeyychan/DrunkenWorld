@@ -142,6 +142,27 @@ var path = d3.geo.path()
 
 init_year  = 1990;
 
+function search_bar () {
+    
+    /* Formatting data */
+    searchbar_data = []; 
+    Object.keys(country_ids).map(function(d) {
+                                    searchbar_data.push({id: d, text: country_ids[d]});
+                                });
+    
+    /* Appending to div */
+    $(".searchbar").select2({
+        data: searchbar_data,
+    });
+
+    $(".searchbar").on("select2:select", function (e) { 
+                                            var year = 1990;
+                                            var d = e.params.data;
+                                            selected_country(d);
+                                        });
+
+}
+
 function init_map() {
     width  = $(window).width() * 0.85,
     height = width / 2.073164161;
@@ -225,32 +246,7 @@ function init_map() {
             .style("fill", function(d)   { return set_country_color(d, init_year); })
             .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
             .on("mouseout", function(d)  { disable_tooltip(); })
-            .on("click", function(d)     {
-                if ($('.sidebar_item#side' + d.id).length == 0) {
-                    sidebar(d, init_year); 
-                    d3.select(this).style("stroke", "orange")
-                                   .style("stroke-width", 2);
-                } else {
-                    $("#side"+d.id).remove();
-                    d3.select('.country#c' + d.id).style("stroke", "none");
-                }
-
-                if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
-                    $('#sidebar_instruction').css('display','none');
-                    $(".sidebar").toggle("slide");
-                    $('.viz-page').animate({'margin-left': '0'}, 500);
-                }
-
-                if ($('.sidebar_item').length > 0 && $('#sidebar_instruction').css('display') != 'none') {
-                    $('#sidebar_instruction').css('display', 'none');
-                }
-
-                if ($('.sidebar_item').length == 0) {
-                    $('#sidebar_instruction').css('display','inherit')
-                    $('.sidebar').slideUp();
-                    $('.viz-page').animate({'margin-left': '7.5%'}, 500);
-                }
-            });
+            .on("click", function(d)     { selected_country(d); });
 
         g.insert("path", ".graticule")
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
@@ -260,6 +256,36 @@ function init_map() {
     });
 
     d3.select(self.frameElement).style("height", height + "px");
+}
+
+function selected_country(d) {
+
+    if ($('.sidebar_item#side' + d.id).length == 0) {
+        sidebar(d, init_year); 
+        d3.select("#c"+d.id).style("stroke", "orange")
+                       .style("stroke-width", 2);
+    } else {
+        $("#side"+d.id).remove();
+        d3.select('.country#c' + d.id).style("stroke", "none");
+    }
+
+    if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
+        $('#sidebar_instruction').css('display','none');
+        $(".sidebar").toggle("slide");
+        $(".select2-selection").css("width", "130px");
+        $('.viz-page').animate({'margin-left': '0'}, 500);
+    }
+
+    if ($('.sidebar_item').length > 0 && $('#sidebar_instruction').css('display') != 'none') {
+        $('#sidebar_instruction').css('display', 'none');
+    }
+
+    if ($('.sidebar_item').length == 0) {
+        $('#sidebar_instruction').css('display','inherit')
+        $(".sidebar").toggle("slide");
+        $('.viz-page').animate({'margin-left': '7.5%'}, 500);
+        $(".select2-selection").css("width", "200px");
+    }
 }
 
 function zoomed() {

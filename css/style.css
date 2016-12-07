@@ -11,7 +11,7 @@ body {
 }
 
 .map-container {
-    padding-top: 53px;
+    padding-top: 11px;
 }
 
 #svg-map {
@@ -427,3 +427,15 @@ div.tooltip {
     color: #1F5673;
 }
 
+/* Search Bar */
+/*.searchbar {
+    width: 300px;
+}*/
+.select2-selection {
+    width: 200px;
+}
+
+.select2.select2-container {
+    margin-left: calc(100% - 200px);
+    margin-top: 14px;
+}

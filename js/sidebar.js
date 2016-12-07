@@ -36,6 +36,7 @@ function sidebar(d, year) {
 }
 
 function sidebar_append(d, year) {
+
     if(!$("#side"+d.id).length) { // country is not already selected
     	$(".sidebar").append("<div class='sidebar_item' id='side"+d.id+"'>"+
                                 "<p class='sidebar_x'></p>"+
@@ -50,7 +51,6 @@ function sidebar_append(d, year) {
             .attr("height", lineheight + 25);
 
         var lineg = linesvg.append("g");
-
         var x = d3.scale.linear().range([0, linewidth]);
         var y = d3.scale.pow().exponent(.4).range([lineheight, 0]);
         var line = d3.svg.line().x(function(d) { return x(d.year);  })
@@ -58,7 +58,6 @@ function sidebar_append(d, year) {
 
         x.domain([min_year, max_year]);
         y.domain([0, 30]);
-
         var xAxis = d3.svg.axis()
             .scale(x)
             .tickValues([1970, 1985, 2000])
@@ -95,7 +94,6 @@ function sidebar_append(d, year) {
             .style("font-size", "12px");
 
         var lc = colorScale_All(20);
-
         if (alc_types == "Beer") {
             lc = colorScale_Beer(20);
         } else if (alc_types == "Wine") {
@@ -109,7 +107,6 @@ function sidebar_append(d, year) {
         } else if (alc_types.indexOf("Wine") == -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") != -1) {
             lc = colorScale_BS(20)
         }
-
         var da = pull_annual_data(country_ids[d.id]);
         var dw = pull_annual_data_2(country_ids[d.id], "Wine");
         var db = pull_annual_data_2(country_ids[d.id], "Beer");
@@ -257,6 +254,7 @@ function sidebar_remove(d) {
             $('.sidebar').slideUp();
             $('#sidebar_instruction').css('display', 'inherit');
             $('.viz-page').animate({'margin-left': '7.5%'}, 500);
+            $(".select2-selection").css("width", "200px");
         }
 	});
 }
@@ -274,4 +272,5 @@ function sidebar_clear() {
 $('.dropdown-btn').click(function() {
     $(".sidebar").toggle("slide");
     $('.viz-page').animate({'margin-left': '0'}, 500);
+    $(".select2-selection").css("width", "130px");
 });

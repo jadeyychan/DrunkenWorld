@@ -73,6 +73,7 @@ $.ajax({
             consumption[country][alc_type] = aggregate_annual_data(line.slice(3,line.length), false);
         }
         init_map();
+        search_bar();
     }
 });
 

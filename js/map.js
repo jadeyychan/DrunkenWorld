@@ -12,54 +12,27 @@ function get_consumption(country, alc_types, year) {
 
 function set_country_color(d, year) {
     var country = country_ids[String(d.id)];
-    if (alc_types == "Wine") {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale_Wine(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
-    }
-    else if (alc_types == "Beer") {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale_Beer(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
-    }
-    else if (alc_types == "Spirits") {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale_Spirits(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
-    }
-    else if (alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Beer") == -1 ) {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale_WS(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
-    }
-    else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Wine") == -1 ) {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
+    if (consumption[country] && get_consumption(country, alc_types, year)) {
+        if      (alc_types == "Wine")    return colorScale_Wine(get_consumption(country, alc_types, year));
+        else if (alc_types == "Beer")    return colorScale_Beer(get_consumption(country, alc_types, year));
+        else if (alc_types == "Spirits") return colorScale_Spirits(get_consumption(country, alc_types, year));
+
+        // spirits & wine (not beer)
+        else if (alc_types.indexOf("Beer") == -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Wine") != -1)
+            return colorScale_SW(get_consumption(country, alc_types, year));
+
+        // beer & spirits (not wine)
+        else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Spirits") != -1 && alc_types.indexOf("Wine") == -1)
             return colorScale_BS(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
-    }
-    else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Wine") != -1 && alc_types.indexOf("Spirits") == -1 ) {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
+
+        // beer & wine (not spirits)
+        else if (alc_types.indexOf("Beer") != -1 && alc_types.indexOf("Spirits") == -1 && alc_types.indexOf("Wine") != -1)
             return colorScale_BW(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
-    }
-    else {
-        if (consumption[country] && get_consumption(country, alc_types, year)) {
-            return colorScale_All(get_consumption(country, alc_types, year));
-        } else {
-            return "#DEDEE0";
-        }
+
+        // everything selected
+        else return colorScale_All(get_consumption(country, alc_types, year));
+    } else {
+       return "#DEDEE0"; 
     }
 }
 
@@ -71,15 +44,14 @@ function set_tooltip(d, year) {
     tooltip.transition()        
         .duration(200)      
         .style("opacity", .9);
-    if (consumption[country]) {  
-        pretty_alcs = alc_types[0];
-        for (i = 1; i < alc_types.length; i++) {
-            pretty_alcs = pretty_alcs + ", " + alc_types[i];
-        }
-        if (pretty_alcs == undefined) {
-            pretty_alcs = "N/A";
-        }
-        tooltip.html("<span class='tooltip-firstline'>" +country + " (" + year + ")" +"</span>"+ "<br />" + pretty_alcs + ": " + get_consumption(country, alc_types, year).toFixed(2) + " liters") 
+    if (consumption[country]) {
+        var pretty_alcs = null;
+
+        if (alc_types.length == 1)      pretty_alcs = alc_types[0];
+        else if (alc_types.length == 2) pretty_alcs = alc_types.join(" and ");
+        else if (alc_types.length == 3) pretty_alcs = alc_types.join(", ");
+
+        tooltip.html("<span class='tooltip-firstline'>" + country + " (" + year + ")" +"</span>"+ "<br />" + pretty_alcs + ": " + get_consumption(country, alc_types, year).toFixed(2) + " liters") 
             .style("left", (d3.event.pageX) + "px")     
             .style("top", (d3.event.pageY - 28) + "px");
     } else {
@@ -105,6 +77,10 @@ var width  = $(window).width() * 0.8,
 /************************/
 /*      Map Colors      */
 /************************/
+var colorScale_All = d3.scale.pow().exponent(.2)
+    .domain([0, 30])
+    .range(["white", "#034F49"]);
+
 var colorScale_Wine = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#960000"]);
@@ -117,7 +93,7 @@ var colorScale_Spirits = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#4B7796"]);
 
-var colorScale_WS = d3.scale.pow().exponent(.2)
+var colorScale_SW = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#702764"]);
 
@@ -128,10 +104,6 @@ var colorScale_BS = d3.scale.pow().exponent(.2)
 var colorScale_BW = d3.scale.pow().exponent(.2)
     .domain([0, 30])
     .range(["white", "#CC480C"]);
-
-var colorScale_All = d3.scale.pow().exponent(.2)
-    .domain([0, 30])
-    .range(["white", "#034F49"]);
 
 var projection = d3.geo.equirectangular()
     .translate([width / 2, height / 2])
@@ -147,8 +119,8 @@ function search_bar () {
     /* Formatting data */
     searchbar_data = []; 
     Object.keys(country_ids).map(function(d) {
-                                    searchbar_data.push({id: d, text: country_ids[d]});
-                                });
+        searchbar_data.push({id: d, text: country_ids[d]});
+    });
     
     /* Appending to div */
     $(".searchbar").select2({
@@ -157,10 +129,10 @@ function search_bar () {
     });
 
     $(".searchbar").on("select2:select", function (e) { 
-                                            var year = 1990;
-                                            var d = e.params.data;
-                                            selected_country(d);
-                                        });
+        var year = 1990,
+            d    = e.params.data;
+        country_selected(d);
+    });
 
 }
 
@@ -247,7 +219,7 @@ function init_map() {
             .style("fill", function(d)   { return set_country_color(d, init_year); })
             .on("mouseover", function(d) { set_tooltip(d, init_year); })                 
             .on("mouseout", function(d)  { disable_tooltip(); })
-            .on("click", function(d)     { selected_country(d); });
+            .on("click", function(d)     { country_selected(d); });
 
         g.insert("path", ".graticule")
             .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
@@ -259,8 +231,9 @@ function init_map() {
     d3.select(self.frameElement).style("height", height + "px");
 }
 
-function selected_country(d) {
+function country_selected(d) {
 
+    // add if sidebar item not already present, else delete it
     if ($('.sidebar_item#side' + d.id).length == 0) {
         sidebar(d, init_year); 
         d3.select("#c"+d.id).style("stroke", "orange")
@@ -270,23 +243,28 @@ function selected_country(d) {
         d3.select('.country#c' + d.id).style("stroke", "none");
     }
 
-    if ($('.sidebar').css('display') == 'none' && $('.sidebar_item').length > 0) {
-        $('#sidebar_instruction').css('display','none');
-        $(".sidebar").toggle("slide");
-        $(".select2-selection").css("width", "130px");
-        $('.viz-page').animate({'margin-left': '0'}, 500);
-    }
-
-    if ($('.sidebar_item').length > 0 && $('#sidebar_instruction').css('display') != 'none') {
-        $('#sidebar_instruction').css('display', 'none');
-    }
-
+    // if no items to display
     if ($('.sidebar_item').length == 0) {
         $('#sidebar_instruction').css('display','inherit')
-        $(".sidebar").toggle("slide");
-        $('.viz-page').animate({'margin-left': '7.5%'}, 500);
-        $(".select2-selection").css("width", "200px");
+        hide_sidebar();
+    } else if ($('.sidebar').css('display') == 'none') {
+        $('#sidebar_instruction').css('display', 'none');
+        show_sidebar();
+    } else if ($('#sidebar_instruction').css('display') != 'none') {
+        $('#sidebar_instruction').css('display', 'none');
     }
+}
+
+function hide_sidebar() {
+    $(".sidebar").toggle("slide");
+    $('.viz-page').animate({'margin-left': '7.5%'}, 500);
+    $(".select2-selection").css("width", "200px");
+}
+
+function show_sidebar() {
+    $(".sidebar").toggle("slide");
+    $(".select2-selection").css("width", "130px");
+    $('.viz-page').animate({'margin-left': '0'}, 500);
 }
 
 function zoomed() {

@@ -152,7 +152,8 @@ function search_bar () {
     
     /* Appending to div */
     $(".searchbar").select2({
-        data: searchbar_data,
+        placeholder: "Search",
+        data: searchbar_data
     });
 
     $(".searchbar").on("select2:select", function (e) { 

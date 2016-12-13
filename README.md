@@ -1,6 +1,6 @@
 # Our Drunken World
 
-### By Jade Chan, Rebecca Larson, and Ben Tanen
+#### By Jade Chan, Rebecca Larson, and Ben Tanen
 
 Welcome to Our Drunken World, a visualization of how alcoholic our world truly is.
 

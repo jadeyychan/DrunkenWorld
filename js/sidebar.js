@@ -98,7 +98,7 @@ function sidebar_append(d, year) {
         var db = pull_annual_data_split(country_ids[d.id], "Beer");
         var ds = pull_annual_data_split(country_ids[d.id], "Spirits");
 
-        if (da.length > 0) {
+        if (da.length > 1) {
             linesvg.append("path")
                 .datum(dw)
                 .attr("class", "line")
@@ -181,7 +181,6 @@ function sidebar_append(d, year) {
                 }
             });
         } else {
-            console.log('dont');
             linesvg.append('text')
                 .attr("x", 100)
                 .attr("y", 60)

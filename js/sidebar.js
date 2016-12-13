@@ -98,87 +98,96 @@ function sidebar_append(d, year) {
         var db = pull_annual_data_split(country_ids[d.id], "Beer");
         var ds = pull_annual_data_split(country_ids[d.id], "Spirits");
 
-        linesvg.append("path")
-            .datum(dw)
-            .attr("class", "line")
-            .attr("id", "wine")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", colorScale_Wine(20));
+        if (da.length > 1) {
+            linesvg.append("path")
+                .datum(dw)
+                .attr("class", "line")
+                .attr("id", "wine")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", colorScale_Wine(20));
 
-        linesvg.append("path")
-            .datum(db)
-            .attr("class", "line")
-            .attr("id", "beer")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", colorScale_Beer(20));
+            linesvg.append("path")
+                .datum(db)
+                .attr("class", "line")
+                .attr("id", "beer")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", colorScale_Beer(20));
 
-        linesvg.append("path")
-            .datum(ds)
-            .attr("class", "line")
-            .attr("id", "spirits")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", colorScale_Spirits(20));
+            linesvg.append("path")
+                .datum(ds)
+                .attr("class", "line")
+                .attr("id", "spirits")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", colorScale_Spirits(20));
 
-        linesvg.append("path")
-            .datum(da)
-            .attr("class", "line")
-            .attr("id", "all")
-            .attr("d", line)
-            .attr("transform", "translate(39,0)")
-            .style("stroke", "#1F5673")
-            .style("stroke-width", 0);
+            linesvg.append("path")
+                .datum(da)
+                .attr("class", "line")
+                .attr("id", "all")
+                .attr("d", line)
+                .attr("transform", "translate(39,0)")
+                .style("stroke", "#1F5673")
+                .style("stroke-width", 0);
 
-        if (alc_types.indexOf("Wine") == -1) {
-            linesvg.select(".line#wine").style("stroke-width", 0);
-        }
-
-        if (alc_types.indexOf("Beer") == -1) {
-            linesvg.select(".line#beer").style("stroke-width", 0);
-        }
-
-        if (alc_types.indexOf("Spirits") == -1) {
-            linesvg.select(".line#spirits").style("stroke-width", 0);
-        }
-
-        linesvg.on("click", function() {
-            var country = country_ids[d.id];
-            var linesvg = d3.select("#side" + d.id + " svg");
-
-            var da = pull_annual_data(country);
-            var dw = pull_annual_data_split(country, "Wine");
-            var db = pull_annual_data_split(country, "Beer");
-            var ds = pull_annual_data_split(country, "Spirits");
-
-            if (linesvg.select(".line#all").style("stroke-width") == "0px") {
-                linesvg.select(".line#wine").transition(500)
-                    .attr("d", line(da));
-                linesvg.select(".line#beer").transition(500)
-                    .attr("d", line(da));
-                linesvg.select(".line#spirits").transition(500)
-                    .attr("d", line(da))
-
-                linesvg.select(".line#all").transition().delay(500)
-                    .style("stroke-width", "1.5px");
-            } else {
-                linesvg.select(".line#wine").transition(500)
-                    .attr("d", line(dw))
-                    .style("stroke-width", (alc_types.indexOf("Wine") != -1 ? "1.5px" : "0px"));
-
-                linesvg.select(".line#beer").transition(500)
-                    .attr("d", line(db))
-                    .style("stroke-width", (alc_types.indexOf("Beer") != -1 ? "1.5px" : "0px"));
-
-                linesvg.select(".line#spirits").transition(500)
-                    .attr("d", line(ds))
-                    .style("stroke-width", (alc_types.indexOf("Spirits") != -1 ? "1.5px" : "0px"));
-
-                linesvg.select(".line#all").transition()
-                    .style("stroke-width", "0px");
+            if (alc_types.indexOf("Wine") == -1) {
+                linesvg.select(".line#wine").style("stroke-width", 0);
             }
-        });
+
+            if (alc_types.indexOf("Beer") == -1) {
+                linesvg.select(".line#beer").style("stroke-width", 0);
+            }
+
+            if (alc_types.indexOf("Spirits") == -1) {
+                linesvg.select(".line#spirits").style("stroke-width", 0);
+            }
+
+            linesvg.on("click", function() {
+                var country = country_ids[d.id];
+                var linesvg = d3.select("#side" + d.id + " svg");
+
+                var da = pull_annual_data(country);
+                var dw = pull_annual_data_split(country, "Wine");
+                var db = pull_annual_data_split(country, "Beer");
+                var ds = pull_annual_data_split(country, "Spirits");
+
+                if (linesvg.select(".line#all").style("stroke-width") == "0px") {
+                    linesvg.select(".line#wine").transition(500)
+                        .attr("d", line(da));
+                    linesvg.select(".line#beer").transition(500)
+                        .attr("d", line(da));
+                    linesvg.select(".line#spirits").transition(500)
+                        .attr("d", line(da))
+
+                    linesvg.select(".line#all").transition().delay(500)
+                        .style("stroke-width", "1.5px");
+                } else {
+                    linesvg.select(".line#wine").transition(500)
+                        .attr("d", line(dw))
+                        .style("stroke-width", (alc_types.indexOf("Wine") != -1 ? "1.5px" : "0px"));
+
+                    linesvg.select(".line#beer").transition(500)
+                        .attr("d", line(db))
+                        .style("stroke-width", (alc_types.indexOf("Beer") != -1 ? "1.5px" : "0px"));
+
+                    linesvg.select(".line#spirits").transition(500)
+                        .attr("d", line(ds))
+                        .style("stroke-width", (alc_types.indexOf("Spirits") != -1 ? "1.5px" : "0px"));
+
+                    linesvg.select(".line#all").transition()
+                        .style("stroke-width", "0px");
+                }
+            });
+        } else {
+            linesvg.append('text')
+                .attr("x", 100)
+                .attr("y", 60)
+                .style("font-size","18px")
+                .style("opacity", "0.35")
+                .text("No Data");
+        }
     };
 }
 

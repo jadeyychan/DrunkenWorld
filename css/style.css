@@ -39,7 +39,8 @@ body {
     line-height: 1.5;
 }
 
-.info-section-content {
+a {
+    color: gray;
 }
 
 .list-container {

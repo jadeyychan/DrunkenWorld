@@ -1,5 +1,7 @@
 # Our Drunken World
 
+### By Jade Chan, Rebecca Larson, and Ben Tanen
+
 Welcome to Our Drunken World, a visualization of how alcoholic our world truly is.
 
 We were interested in exploring alcohol consumptions around the world. There exist certain stereotypes about which countries drink which types of alcohol and we wanted to build a platform to either confirm or debunk these stereotypes with this visualization.

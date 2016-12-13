@@ -157,6 +157,7 @@ hr {
     left: 0px;
     right: 0px;
     bottom: calc(100% - 50px);
+    /*z-index: 5;*/
 }
 
 .toolbar-background {
@@ -334,6 +335,7 @@ hr {
     top: 14px;
     right: 10px;
     cursor: pointer;
+    z-index: 6;
 }
 
 .dropdown-btn img {
@@ -350,6 +352,7 @@ hr {
     width: 250px;
     border: solid 1.5px #A9A9A9;
     overflow-x: hidden;
+    z-index: 7;
 }
 
 .sidebar_item {

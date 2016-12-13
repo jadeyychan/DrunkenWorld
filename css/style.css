@@ -1,7 +1,6 @@
 body {
     font-family: "Lato", sans-serif;
     margin: 0;
-    overflow-y: hidden;
 }
 
 .hidden {
@@ -15,6 +14,7 @@ body {
     width: 85%;
     background-color: white;
     margin-left: 7.5%;
+    overflow-y: hidden;
 }
 
 .map-container {
@@ -29,22 +29,70 @@ body {
 /* Info Page */
 .info-page {
     background-color: white;
-    width: calc(100%-8px);
-    height: 100vh;
+    width: 100%;
+}
+
+.info-content {
+    width: 60%;
+    margin: 0 auto;
+    padding: 50px 0px 20px 0px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.info-section-content {
+}
+
+.list-container {
+    display: inline-block;
+    margin-left: 30px;
+    padding: 5px 0px 5px 0px;
+}
+
+.fact-container {
+    padding: 8px 0px 10px 0px;
+    margin-left: 30px;
+}
+
+.list-left {
+    float: left;
+    width: 8%;
+    text-align: right;
+}
+
+.list-right {
+    float: right;
+    width: 90%;
+}
+
+.try {
+    font-style: italic;
+    padding-bottom: 4px;
+    color: #4D4D4D;
+}
+
+.info-section {
+    padding: 20px 0px 20px 0px;
+}
+
+hr {
+    width: 100%;
+}
+
+.tagline {
+    font-style: italic;
 }
 
 .info-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    padding: 90px 0 20px 0;
-    margin-left: 30%;
+    padding: 0px 0px 5px 0px;
+    color: #1F5673;
 }
 
 .info-video {
-    background-color: gray;
-    width: 40%;
-    height: 50%;
-    margin: 0 auto;
+    text-align: center;
+    padding: 30px 0px 30px 0px;
 }
 
 /* Landing Page */
@@ -55,6 +103,7 @@ body {
     background: linear-gradient(to bottom right, white, #d9d9d9);
     position: absolute;
     z-index: 5;
+    overflow-y: hidden;
 }
 
 .landing-line {

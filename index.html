@@ -12,6 +12,8 @@
     <script src="js/lib/d3-slider.js"></script>
 
     <script src="js/page.js"></script>
+    <!-- <script src="js/slide-video.js"></script> -->
+
 
     <!-- Favicon -->
     <link rel="icon" href="img/favicon/favicon_stroke.ico" type="image/x-icon"/>
@@ -52,10 +54,110 @@
         <div class="toolbar" onclick="show_landing_page()">
             <div class="toolbar-words"> Our Drunken World </div>
         </div>
-        <div class="info-title">
-            HOW-TO:
-        </div>
-        <div class="info-video">
+        <div class="info-content">
+            <div class="info-section">
+                <div class="info-section-content tagline">
+                Welcome to Our Drunken World, a visualization of how alcoholic our world truly is.
+                </div>
+                <div class="info-section-content">
+                <br>
+                We were interested in exploring alcohol consumptions around the world. There exist certain stereotypes about which countries drink which types of alcohol and we wanted to build a platform to either confirm or debunk these stereotypes with this visualization.
+                </div>  
+            </div>
+            <hr>
+            <div class="info-section">
+                <div class="info-video">
+                    <iframe id="embed-video" width="560" height="315" src="https://www.youtube.com/embed/e-ORhEE9VVg" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <hr>
+            <div class="info-section">
+                <div class="info-title">
+                    Data
+                </div>
+                <div class="info-section-content">
+                In order to create this, we are using data from the World Health Organization, which collected the average consumption of wine, beer, and spirits in liters per capita per year for every country. We used data that spans from 1960 to 2010.
+                </div>
+            </div>
+            <hr>
+            <div class="info-section">
+                <div class="info-title">
+                    Our Drunken World
+                </div>
+                <div class="info-section-content">
+                    Now let’s actually take a look at our visualization. 
+                </div>
+                <div class="info-section-content list-container">
+                    <div class="list-left"> Map: </div>
+                    <div class="list-right">
+                    This map serves as a quick snapshot of the consumption levels around the world. Each country is encoded with a color which represents their consumption relative to the rest of the world, a lighter color represents less consumption and a darker color for heavier consumption. 
+                    </div>
+                </div>
+                <div class="info-section-content list-container">
+                    <div class="list-left"> Timeline:</div>
+                    <div class="list-right">
+                    We can also explore how consumption has changed from year to year by dragging our timeline or over time by hitting the play button.
+                    </div>
+                </div>
+                 <div class="info-section-content list-container">
+                    <div class="list-left"> Filters:</div>
+                    <div class="list-right">
+                    Different filters can be applied to look at how the world drinks different combinations, if you're interested in a more refined or targeted search. 
+                    </div>
+                </div>
+                <div class="info-section-content list-container">
+                    <div class="list-left"> Searchbar: </div>
+                    <div class="list-right">
+                    We can also select specific countries using the search bar, as opposed to clicking them on the map, if you are geographically challenged
+                    </div>
+                </div>
+                <div class="info-section-content list-container">
+                    <div class="list-left"> Sidebar: </div>
+                    <div class="list-right">
+                    Clicking on a country will add it to the sidebar, allowing you to further compare different countries over time. This feature also works with our filters, allowing you to refine your search. If you click on each line graph, it’ll aggregate the selected types of alcohol, totaling the consumption.
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="info-section">
+                <div class="info-title">
+                    Interesting Tidbits
+                </div>
+                <div class="info-section-content">
+                Once the visualization was completed, we used it to explore some of the alcohol stereotypes that exist. 
+                </div>
+                <div class="info-section-content fact-container">
+                    <div class="try"> 
+                    Try: Filter to just beer, and zooming in on Europe on the map.
+                    </div>
+                    <div>
+                    If we look at all of Europe’s beer consumption, we can see that Eastern European countries do tend to drink more beer than their Western European counterparts (especially Germany, Luxembourg, France).
+                    </div>
+                </div>
+                <div class="info-section-content fact-container">
+                    <div class="try"> 
+                    Try: Clicking on Libya.
+                    </div>
+                    <div>
+                    While testing, we kept clicking on Libya, and noticed a steep drop in alcohol consumption in 1970. After some researching, we found that Muammar Gaddafi We checked out Libya’s history to figure out why this would happen and found that 1969 was when Muammar Gaddafitook control of Libya and banned alcohol to uphold Islamic traditions.
+                    </div>
+                </div>
+                <div class="info-section-content fact-container">
+                    <div class="try"> 
+                    Try: Clicking on Russia.
+                    </div>
+                    <div>
+                    Russia has quite a strange trend with their wine consumption. It turns out that after the Russian Revolution in 1917, French wine connoisseursflocked to Russia to tap into the new market, so the wine industry grew. However, when the Soviet Union fell in the 90s, the land vineyards were on was seen as more valuable if used for other crops. Thus, the Russian wine industry suffered. However, the Russians still had to drink, so we can see that they made up for that loss in wine by drinking more spirits. 
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div class="info-section">
+                <div class="info-section-content">
+                    While we had fun exploring alcohol stereotypes, we found we could also use this visualization to discover how alcohol consumption reflects the world’s history and culture.
+                </div>
+            </div>
         </div>
     </div>
 
@@ -114,6 +216,4 @@
         </div>
         <script src="js/sidebar.js"></script>
     </div>
-
-
 </body>

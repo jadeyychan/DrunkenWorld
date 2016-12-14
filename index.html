@@ -12,7 +12,7 @@
     <script src="js/lib/d3-slider.js"></script>
 
     <script src="js/page.js"></script>
-    <!-- <script src="js/slide-video.js"></script> -->
+    <script src="js/slide-video.js"></script>
 
 
     <!-- Favicon -->
@@ -69,9 +69,12 @@
                 <div class="info-video">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/ycjJyr3N5Xo" frameborder="0" allowfullscreen></iframe>
                 </div>
+               <div class="see-more-button" onclick="info_page_slide()">
+                See more below
+                </div>
             </div>
             <hr>
-            <div class="info-section">
+            <div class="info-section data">
                 <div class="info-title">
                     Data
                 </div>
@@ -88,32 +91,32 @@
                     Now let’s actually take a look at our visualization. 
                 </div>
                 <div class="info-section-content list-container">
-                    <div class="list-left"> Map: </div>
-                    <div class="list-right">
-                    This map serves as a quick snapshot of the consumption levels around the world. Each country is encoded with a color which represents their consumption relative to the rest of the world, a lighter color represents less consumption and a darker color for heavier consumption. 
+                    <div class="list-item-title"> Map: </div>
+                    <div>
+                    The map serves as a quick snapshot of the consumption levels around the world. Each country is encoded with a color which represents their consumption relative to the rest of the world, a lighter color represents less consumption and a darker color for heavier consumption. 
                     </div>
                 </div>
                 <div class="info-section-content list-container">
-                    <div class="list-left"> Timeline:</div>
-                    <div class="list-right">
+                    <div class="list-item-title"> Timeline:</div>
+                    <div>
                     We can also explore how consumption has changed from year to year by dragging our timeline or over time by hitting the play button.
                     </div>
                 </div>
                  <div class="info-section-content list-container">
-                    <div class="list-left"> Filters:</div>
-                    <div class="list-right">
+                    <div class="list-item-title"> Filters:</div>
+                    <div>
                     Different filters can be applied to look at how the world drinks different combinations, if you're interested in a more refined or targeted search. 
                     </div>
                 </div>
                 <div class="info-section-content list-container">
-                    <div class="list-left"> Searchbar: </div>
-                    <div class="list-right">
+                    <div class="list-item-title"> Searchbar: </div>
+                    <div>
                     We can also select specific countries using the search bar, as opposed to clicking them on the map, if you are geographically challenged
                     </div>
                 </div>
                 <div class="info-section-content list-container">
-                    <div class="list-left"> Sidebar: </div>
-                    <div class="list-right">
+                    <div class="list-item-title"> Sidebar: </div>
+                    <div>
                     Clicking on a country will add it to the sidebar, allowing you to further compare different countries over time. This feature also works with our filters, allowing you to refine your search. If you click on each line graph, it’ll aggregate the selected types of alcohol, totaling the consumption.
                     </div>
                 </div>

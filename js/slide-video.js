@@ -1,7 +1,11 @@
-$( document ).ready(function() {
-	var video = document.getElementsByTagName('iframe')[0];
+function onPlayerStateChange(event) {        
+    if(event.data === 0) {          
+        alert('done');
+    }
+}
 
-	video.onended = function(e) {
-	  console.log("video: ", video);
-	};
-});
+function info_page_slide() {
+    $('html,body').animate({
+        scrollTop: $(".data").offset().top -80}, 'slow');
+    $(".see-more-button").addClass("hidden");
+}

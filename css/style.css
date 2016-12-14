@@ -44,25 +44,29 @@ a {
 }
 
 .list-container {
-    display: inline-block;
     margin-left: 30px;
     padding: 5px 0px 5px 0px;
+}
+
+.list-item-title {
+    font-style: italic;
+}
+
+.see-more-button {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+    color: #A9A9A9;
+    font-style: italic;
+}
+
+.see-more-button:hover {
+    text-decoration: underline;
 }
 
 .fact-container {
     padding: 8px 0px 10px 0px;
     margin-left: 30px;
-}
-
-.list-left {
-    float: left;
-    width: 8%;
-    text-align: right;
-}
-
-.list-right {
-    float: right;
-    width: 90%;
 }
 
 .try {

@@ -16,25 +16,3 @@ $(window).scroll(function() {
     	$(".see-more-button").addClass("hidden");
     }
 });
-
-/********** Embedded Youtube Video *************/
-
-// create youtube player
-var player;
-function onYouTubePlayerAPIReady() {
-    player = new YT.Player('info-video-player', {
-      height: '315',
-      width: '560',
-      videoId: 'O-eeiWZ7WRY',
-      events: {
-        'onStateChange': onPlayerStateChange
-      }
-    });
-}
-
-// when video ends
-function onPlayerStateChange(event) {        
-    if(event.data === 0) {          
-        info_page_slide();
-    }
-}

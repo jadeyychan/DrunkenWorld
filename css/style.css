@@ -53,15 +53,16 @@ a {
 }
 
 .see-more-button {
-    position: absolute;
+    position: fixed;
     bottom: 15px;
     right: 30px;
     color: #A9A9A9;
     font-style: italic;
+    cursor: default;
 }
 
 .see-more-button:hover {
-    text-decoration: underline;
+    /* text-decoration: underline;*/
 }
 
 .fact-container {

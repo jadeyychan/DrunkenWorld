@@ -10,9 +10,9 @@ function info_page_slide() {
 $(window).scroll(function() {
     var height = $(window).scrollTop();
 
-    if (height <= 20) {
-    	$(".see-more-button").removeClass("hidden");
-    } else if (height >= 30) {
-    	$(".see-more-button").addClass("hidden");
+    if (height < $('.info-content').height() - $(window).height()) {
+    	$(".see-more-button").fadeIn();
+    } else {
+    	$(".see-more-button").fadeOut()
     }
 });
